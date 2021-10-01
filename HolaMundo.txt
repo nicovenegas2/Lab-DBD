@@ -1,6 +1,4 @@
 Hola mundo soy el Vixo
-<<<<<<< HEAD
 Hola mundo soy el Lalex
-=======
 y yo el nico
->>>>>>> main
+y yo el salfate
