@@ -12,29 +12,42 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
+    /*
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    /*protected $fillable = [
         'name',
         'email',
         'password',
     ];
-
-    /**
+    */
+    /*
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
-     */
+     *
     protected $hidden = [
         'password',
     ];
-
-    /**
+    */
+    /*
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     @var array<string, string>
      */
+    public function follower(){
+        return $this->hasMany(Follower::class);
+    }
+    public function followed(){
+        return $this->hasMany(Follower::class);
+    }
+    public function message_emisor(){
+        return $this->hasMany(Message::class);
+    }
+    public function message_receptor(){
+        return $this->hasMany(Message::class);
+    }
+    
 }
