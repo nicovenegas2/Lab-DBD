@@ -15,6 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->char('nickname', 30);
+            $table->char('name', 30);
+            $table->char('email', 30);
+            $table->char('password', 30);
+            $table->integer('wallet');
+            $table->date('birthday');
+            $table->unsignedBigInteger('id_country')->nullable();
+            $table->foreign('id_country')->references('id')->on('countries');
             $table->timestamps();
         });
     }
