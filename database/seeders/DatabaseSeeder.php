@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Permission::factory(10)->create();
-        Country::factory(180)->create();
+        Country::factory(10)->create();
         User::factory(40)->create();
         Role::factory(3)->create();
         Message::factory(10)->create();

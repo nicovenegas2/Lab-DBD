@@ -16,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-//Routes for User
+//Routes for Country 
+Route::get('/countries','CountryController@index');
+Route::get('/countries/{id}','CountryController@show');
+Route::post('/countries/create','CountryController@store');
+Route::put('/countries/update/{id}','CountryController@update');

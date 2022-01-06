@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
+use Illuminate\Support\Facades\Validator;
 
 class CountryController extends Controller
 {
@@ -15,7 +16,7 @@ class CountryController extends Controller
     public function index(){
         $countries = Country::all();
         if($countries->isEmpty()) 
-        return response()->json(['respuesta' => 'No se encuentran subjects']);
+        return response()->json(['response' => 'Countries not founded']);
 
         return response($countries, 200);
     }
@@ -38,7 +39,33 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min:2|max:30|unique:posts',
+                'coin' => 'required|min:2|max:100',
+            ],
+            [
+                'name.required' => 'Name required',
+                'name.min' => 'Name min chars 2',
+                'name.max' => 'Name max chars 30',
+                'coin.required' => 'Coin required',
+                'coin.min' => 'Coin min chars 2',
+                'coin.max' => 'Coin max chars 100',
+            ]
+            );
+        /*
+        if($validator->fails()){
+            return response()->$validator->errors();
+        }
+        */
+        $newCountry = new Country();
+        $newCountry->name = $request->name;
+        $newCountry->coin = $request->coin;
+        $newCountry->save();
+        return response()->json([
+            'response' => 'Country created',
+            'id' => $newCountry->id,
+        ],201);
     }
 
     /**
@@ -50,8 +77,8 @@ class CountryController extends Controller
     public function show($id)
     {
         $country = Country::find($id);
-        if(empty($countries)) 
-        return response()->json(['respuesta' => 'No se encuentran subjects']);
+        if(empty($country))
+        return response()->json(['response' => 'Country not found']);
 
         return response($country,200);
     }
@@ -76,7 +103,31 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min:2|max:30|unique:posts',
+                'coin' => 'required|min:2|max:100',
+            ],
+            [
+                'name.required' => 'Name required',
+                'name.min' => 'Name min chars 2',
+                'name.max' => 'Name max chars 30',
+                'coin.required' => 'Coin required',
+                'coin.min' => 'Coin min chars 2',
+                'coin.max' => 'Coin max chars 100',
+            ]
+            );
+
+        $country = Country::find($id);
+
+        if(empty($country))
+        return response()->json(['response' => 'Country not found']);
+        $country->name = $request->name;
+        $country->coin = $request->coin;
+        $country->save();
+        return response()->json([
+            'response' => 'Country modified'
+        ],200);
     }
 
     /**
