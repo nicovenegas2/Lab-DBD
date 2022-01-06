@@ -6,6 +6,10 @@ use App\Models\User;
 use App\Models\Country;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\Message;
+use App\Models\PaymentMethod;
+use App\Models\Follower;
+use App\Models\RoleUser;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +25,9 @@ class DatabaseSeeder extends Seeder
         Country::factory(180)->create();
         User::factory(40)->create();
         Role::factory(3)->create();
+        Message::factory(10)->create();
+        PaymentMethod::factory(5)->create();
+        Follower::factory(10)->create();
+        RoleUser::factory(10)->create();
     }
 }

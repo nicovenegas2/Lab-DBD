@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 class FollowerFactory extends Factory
 {
@@ -14,7 +15,8 @@ class FollowerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_follower' => User::all()->random()->id,
+            'id_followed' => User::all()->random()->id
         ];
     }
 }
