@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    public function user_emisor(){
+    public function user_sender(){
         return $this->belongsTo(User::class);
     }
 
-    public function user_receptor(){
+    public function user_receiver(){
         return $this->belongsTo(User::class);
     }
 

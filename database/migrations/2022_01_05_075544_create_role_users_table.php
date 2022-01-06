@@ -17,8 +17,8 @@ class CreateRoleUsersTable extends Migration
             $table->id();
             $table->bigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');
-            $table->bigInteger('id_rol')->nullable();
-            $table->foreign('id_rol')->references('id')->on('roles');
+            $table->bigInteger('id_role')->nullable();
+            $table->foreign('id_role')->references('id')->on('roles');
             $table->timestamps();
         });
     }

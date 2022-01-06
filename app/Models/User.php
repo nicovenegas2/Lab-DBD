@@ -27,11 +27,11 @@ class User extends Model
         return $this->hasMany(PaymentMethod::class);
     }
 
-    public function emisor(){
+    public function user_sender(){
         return $this->hasMany(Message::class);
     }
 
-    public function receptor(){
+    public function user_receiver(){
         return $this->hasMany(Message::class);
     }
 
