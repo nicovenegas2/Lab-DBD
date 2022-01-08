@@ -14,13 +14,12 @@ class PaymentMethodFactory extends Factory
      */
     public function definition()
     {
-        $validname = function($name){
-            return strlen($name) < 100;
+        $validname = function($creditCardType){
+            return strlen($creditCardType) < 100;
             };
         return [
-            'name' => $this->faker->valid($validname)->name,
+            'name' => $this->faker->valid($validname)->creditCardType,
             'id_user' => User::all()->random()->id
-            
         ];
     }
 }
