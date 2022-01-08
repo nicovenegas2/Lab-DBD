@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Country;
+use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 
-class CountryController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $countries = Country::all();
-        if($countries->isEmpty()) 
-        return response()->json(['response' => 'Countries not founded']);
+    public function index()
+    {
+        $roles = Role::all();
+        if($roles->isEmpty()) 
+        return response()->json(['response' => 'Roles not founded']);
 
-        return response($countries, 200);
+        return response($roles, 200);
     }
 
     /**
@@ -41,17 +42,17 @@ class CountryController extends Controller
     {
         $validator = Validator::make(
             $request->all(),[
-                'name' => 'required|min:2|max:30|unique:countries,name',
-                'coin' => 'required|min:2|max:100',
+                'name' => 'required|min:2|max:30|unique:roles,name',
+                'description' => 'required|min:2|max:100',
             ],
             [
                 'name.required' => 'Name required',
                 'name.unique' => 'Name repeted',
                 'name.min' => 'Name min chars 2',
                 'name.max' => 'Name max chars 30',
-                'coin.required' => 'Coin required',
-                'coin.min' => 'Coin min chars 2',
-                'coin.max' => 'Coin max chars 100',
+                'description.required' => 'Description required',
+                'description.min' => 'Description min chars 2',
+                'description.max' => 'Description max chars 100',
             ]
             );
         
@@ -59,29 +60,29 @@ class CountryController extends Controller
             return response($validator->errors(), 400);
         
         
-        $newCountry = new Country();
-        $newCountry->name = $request->name;
-        $newCountry->coin = $request->coin;
-        $newCountry->save();
+        $newRole = new Role();
+        $newRole->name = $request->name;
+        $newRole->description = $request->description;
+        $newRole->save();
         return response()->json([
-            'response' => 'Country created',
-            'id' => $newCountry->id,
+            'response' => 'Role created',
+            'id' => $newRole->id,
         ],201);
     }
 
-    /*
+    /**
      * Display the specified resource.
      *
-        @param  int  $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $country = Country::find($id);
-        if(empty($country))
-        return response()->json(['response' => 'Country not found']);
+        $role = Role::find($id);
+        if(empty($role))
+        return response()->json(['response' => 'Role not found']);
 
-        return response($country,200);
+        return response($role,200);
     }
 
     /**
@@ -106,32 +107,33 @@ class CountryController extends Controller
     {
         $validator = Validator::make(
             $request->all(),[
-                'name' => 'required|min:2|max:30|unique:countries,name',
-                'coin' => 'required|min:2|max:100',
+                'name' => 'required|min:2|max:30|unique:roles,name',
+                'description' => 'required|min:2|max:100',
             ],
             [
                 'name.required' => 'Name required',
                 'name.unique' => 'Name repeted',
                 'name.min' => 'Name min chars 2',
                 'name.max' => 'Name max chars 30',
-                'coin.required' => 'Coin required',
-                'coin.min' => 'Coin min chars 2',
-                'coin.max' => 'Coin max chars 100',
+                'description.required' => 'Description required',
+                'description.min' => 'Description min chars 2',
+                'description.max' => 'Description max chars 100',
             ]
             );
+        
         if($validator->fails())
             return response($validator->errors(), 400);
+        
+        $role = Role::find($id);
+        
+        if(empty($role))
+        return response()->json(['response' => 'Role not found']);
 
-        $country = Country::find($id);
-        
-        if(empty($country))
-        return response()->json(['response' => 'Country not found']);
-        
-        $country->name = $request->name;
-        $country->coin = $request->coin;
-        $country->save();
+        $role->name = $request->name;
+        $role->description = $request->description;
+        $role->save();
         return response()->json([
-            'response' => 'Country modified'
+            'response' => 'Role modified'
         ],200);
     }
 
@@ -141,17 +143,16 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
     public function destroy($id)
     {
-        $country = Country::find($id);
+        $role = Role::find($id);
         
-        if(empty($country))
-        return response()->json(['response' => 'Country not found']);
+        if(empty($role))
+        return response()->json(['response' => 'Role not found']);
 
-        $country->delete();
+        $role->delete();
         return response()->json([
-            'response' => 'Country deleted'
+            'response' => 'Role deleted'
         ],200);
     }
 }

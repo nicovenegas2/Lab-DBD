@@ -26,7 +26,6 @@ class RoleFactory extends Factory
             //
             'name' => $this->faker->name,
             'description' => $this->faker->text($maxNbChars = 100),
-            'id_permision' => Permission::all()->random()->id
         ];
     }
 }
