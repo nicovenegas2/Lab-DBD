@@ -40,7 +40,9 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min:2|max:100'
     }
 
     /**
