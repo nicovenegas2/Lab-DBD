@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Voucher;
 
 class VoucherController extends Controller
 {
@@ -13,7 +14,12 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        //
+        $voucher = new Voucher();
+        $voucher = $voucher->all();
+        if($voucher::isempty()){
+            return respose()->json(['message'=>'No data found'],404);
+        }
+        return response($voucher,200);
     }
 
     /**
@@ -34,7 +40,24 @@ class VoucherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_users' => 'required',
+            'total_amount' => 'required|integer',
+        ],
+        [
+            'id_users.required' => 'id_users is required',
+            'total_amount.required' => 'total_amount is required',
+            'total_amount.integer' => 'total_amount must be an integer',
+        ]);
+        if($validator->fails())
+        {
+            return response($validator->errors(),400);
+        }
+        $voucher = new Voucher();
+        $voucher->id_users = $request->id_users;
+        $voucher->total_amount = $request->total_amount;
+        $voucher->save();
+        return response()->json(['message'=>'Voucher created successfully'],201);
     }
 
     /**
@@ -45,7 +68,12 @@ class VoucherController extends Controller
      */
     public function show($id)
     {
-        //
+        $voucher = new Voucher();
+        $voucher = $voucher->find($id);
+        if($voucher::isempty()){
+            return respose()->json(['message'=>'No data found'],404);
+        }
+        return response($voucher,200);
     }
 
     /**
@@ -68,7 +96,25 @@ class VoucherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_users' => 'required',
+            'total_amount' => 'required|integer',
+        ],
+        [
+            'id_users.required' => 'id_users is required',
+            'total_amount.required' => 'total_amount is required',
+            'total_amount.integer' => 'total_amount must be an integer',
+        ]);
+        if($validator->fails())
+        {
+            return response($validator->errors(),400);
+        }
+        $voucher = new Voucher();
+        $voucher = $voucher->find($id);
+        $voucher->id_users = $request->id_users;
+        $voucher->total_amount = $request->total_amount;
+        $voucher->save();
+        return response()->json(['message'=>'Voucher updated successfully'],201);
     }
 
     /**
@@ -79,6 +125,12 @@ class VoucherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $voucher = new Voucher();
+        $voucher = $voucher->find($id);
+        if($voucher::isempty()){
+            return respose()->json(['message'=>'No data found'],404);
+        }
+        $voucher->delete();
+        return response()->json(['message'=>'Voucher deleted successfully'],201);
     }
 }
