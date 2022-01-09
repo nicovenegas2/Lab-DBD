@@ -53,11 +53,18 @@ class RolePermissionController extends Controller
         {
             return response($validator->errors(),400);
         }
+        $allRolePermission = new RolePermission();
+        $allRolePermission = $allRolePermission->all();
+        foreach($allRolePermission as $rolePermission){
+            if($rolePermission->id_role == $request->id_role && $rolePermission->id_permission == $request->id_permission){
+                return response()->json(['message'=>'Data already exist'],400);
+            }
+        }
         $rolePermission = new RolePermission();
         $rolePermission->id_role = $request->id_role;
         $rolePermission->id_permission = $request->id_permission;
         $rolePermission->save();
-        return response()->json(['message'=>'new RolePermission has been created'],201);
+        return response()->json(['message'=>'Data has been created'],200);
     }
 
     /**
