@@ -15,6 +15,10 @@ class CreateWishListsTable extends Migration
     {
         Schema::create('wish_lists', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_game')->nullable();
+            $table->foreign('id_game')->references('id')->on('games');
             $table->timestamps();
         });
     }
