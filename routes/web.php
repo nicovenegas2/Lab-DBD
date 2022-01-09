@@ -58,3 +58,9 @@ Route::get('/countrygames/{id}','CountryGameController@show');
 Route::post('/countrygames/create','CountryGameController@store');
 Route::put('/countrygames/update/{id}','CountryGameController@update');
 Route::delete('/countrygames/delete/{id}','CountryGameController@destroy');
+//Routes for Like
+Route::get('/likes','LikeController@index');
+Route::get('/likes/{id}','LikeController@show');
+Route::post('/likes/create','LikeController@store');
+Route::put('/likes/update/{id}','LikeController@update');
+Route::delete('/likes/delete/{id}','LikeController@destroy');
