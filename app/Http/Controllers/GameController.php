@@ -16,7 +16,7 @@ class GameController extends Controller
     {
         $G = new Game;
         $G = $G::all();
-        if($G::isEmpty()){
+        if($G->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($G,200);

@@ -14,9 +14,8 @@ class ContentVoucherController extends Controller
      */
     public function index()
     {
-        $contentVoucher = new ContentVoucher();
         $contentVoucher = $contentVoucher->all();
-        if($contentVoucher::isEmpty()){
+        if($contentVoucher->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($contentVoucher,200);

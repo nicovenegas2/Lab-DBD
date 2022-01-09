@@ -16,7 +16,7 @@ class RolePermissionController extends Controller
     {
         $rolePermission = new RolePermission();
         $rolePermission = $rolePermission->all();
-        if($rolePermission::isEmpty()){
+        if($rolePermission->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         return response($rolePermission,200);
@@ -69,7 +69,7 @@ class RolePermissionController extends Controller
     {
         $rolePermission = new RolePermission();
         $rolePermission = $rolePermission->find($id);
-        if($rolePermission::isEmpty()){
+        if($rolePermission->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         return response($rolePermission,200);
@@ -109,7 +109,7 @@ class RolePermissionController extends Controller
         }
         $rolePermission = new RolePermission();
         $rolePermission = $rolePermission->find($id);
-        if($rolePermission::isEmpty()){
+        if($rolePermission->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         $rolePermission->id_role = $request->id_role;
@@ -128,7 +128,7 @@ class RolePermissionController extends Controller
     {
         $rolePermission = new RolePermission();
         $rolePermission = $rolePermission->find($id);
-        if($rolePermission::isEmpty()){
+        if($rolePermission->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         $rolePermission->delete();

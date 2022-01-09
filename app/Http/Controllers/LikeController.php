@@ -16,7 +16,7 @@ class LikeController extends Controller
     {
         $like = new Like();
         $like = $like->all();
-        if($like::isEmpty()){
+        if($like->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         return response($like,200);
@@ -120,7 +120,7 @@ class LikeController extends Controller
         }
         $like = new Like();
         $like = $like->find($id);
-        if($like::isEmpty()){
+        if($like->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         $like->id_user = $request->id_user;
@@ -140,7 +140,7 @@ class LikeController extends Controller
     {
         $like = new Like();
         $like = $like->find($id);
-        if($like::isEmpty()){
+        if($like->isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         $like->delete();

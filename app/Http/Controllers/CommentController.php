@@ -16,7 +16,7 @@ class CommentController extends Controller
     {
         $comment = new Comment();
         $comment = $comment->all();
-        if($comment::isEmpty()){
+        if($comment->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($comment,200);
