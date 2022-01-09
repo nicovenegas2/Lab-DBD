@@ -54,12 +54,23 @@ class LikeController extends Controller
         {
             return response($validator->errors(),400);
         }
+
+        $allLikes = new Like();
+        $allLikes = $allLikes->all();
         $like = new Like();
-        $like->id_user = $request->id_user;
-        $like->id_game = $request->id_game;
-        $like->choice = $request->choice;
-        $like->save();
-        return response()->json(['message'=>'new Like has been created'],201);
+
+        $filtered = $allLikes->filter(function ($item) use ($request) {
+            return $item->id_user == $request->id_user && $item->id_game == $request->id_game;
+        });
+        if ($filtered->isEmpty()) {
+            $like->id_user = $request->id_user;
+            $like->id_game = $request->id_game;
+            $like->choice = $request->choice;
+            $like->save();
+            return response()->json(['message'=>'Like created'],201);
+        } else {
+            return response()->json(['message'=>'You already liked this game'],400);
+        }
     }
 
     /**
