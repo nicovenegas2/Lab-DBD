@@ -14,14 +14,14 @@ class ContentVoucherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $contentVoucher = $contentVoucher->all();
+        $contentVoucher = ContentVoucher::all();
         if($contentVoucher->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($contentVoucher,200);
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -49,10 +49,16 @@ class ContentVoucherController extends Controller
             'id_voucher.required' => 'Voucher is required',
             'id_voucher.integer' => 'Voucher must be an integer',
         ]);
+        
         if($validator->fails())
         {
             return response($validator->errors(),400);
         }
+
+        if(!ContentVoucher::all()->filter(function ($contentVoucher) use ($request) {
+            return $contentVoucher->id_user == $request->id_user && $contentVoucher->id_voucher == $request->id_voucher;
+        })->isEmpty()) return response()->json(['message'=>'ContentVoucher repeated'],400);
+
         $contentVoucher = new ContentVoucher();
         $contentVoucher->id_game = $request->id_game;
         $contentVoucher->id_voucher = $request->id_voucher;
@@ -68,7 +74,7 @@ class ContentVoucherController extends Controller
      */
     public function show($id)
     {
-        $contentVoucher = $contentVoucher->find($id);
+        $contentVoucher = ContentVoucher::find($id);
         if($contentVoucher == null){
             return respose()->json(['message'=>'No data found'],404);
         }
@@ -109,7 +115,11 @@ class ContentVoucherController extends Controller
         {
             return response($validator->errors(),400);
         }
-        $contentVoucher = $contentVoucher->find($id);
+        if(!ContentVoucher::all()->filter(function ($contentVoucher) use ($request) {
+            return $contentVoucher->id_user == $request->id_user && $contentVoucher->id_voucher == $request->id_voucher;
+        })->isEmpty()) return response()->json(['message'=>'ContentVoucher repeated'],400);
+
+        $contentVoucher = ContentVoucher::find($id);
         if($contentVoucher == null){
             return response()->json(['message'=>'No data found'],404);
         }

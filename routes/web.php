@@ -70,3 +70,9 @@ Route::get('/wishlists/{id}','WishListController@show');
 Route::post('/wishlists/create','WishListController@store');
 Route::put('/wishlists/update/{id}','WishListController@update');
 Route::delete('/wishlists/delete/{id}','WishListController@destroy');
+//Routes for ContentVoucher
+Route::get('/contentvouchers','ContentVoucherController@index');
+Route::get('/contentvouchers/{id}','ContentVoucherController@show');
+Route::post('/contentvouchers/create','ContentVoucherController@store');
+Route::put('/contentvouchers/update/{id}','ContentVoucherController@update');
+Route::delete('/contentvouchers/delete/{id}','ContentVoucherController@destroy');
