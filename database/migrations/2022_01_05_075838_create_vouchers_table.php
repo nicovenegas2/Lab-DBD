@@ -15,6 +15,9 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_users')->nullable();
+            $table->foreign('id_users')->references('id')->on('users');
+            $table->integer('total_amount');
             $table->timestamps();
         });
     }
