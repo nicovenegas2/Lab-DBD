@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RolePermission;
+use App\Models\Like;
 
-class RolePermissionController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,12 @@ class RolePermissionController extends Controller
      */
     public function index()
     {
-        $rolePermission = new RolePermission();
-        $rolePermission = $rolePermission->all();
-        if($rolePermission::isempty()){
+        $like = new Like();
+        $like = $like->all();
+        if($like::isempty()){
             return response()->json(['message'=>'No data found'],404);
         }
-        return response($rolePermission,200);
+        return response($like,200);
     }
 
     /**
@@ -41,22 +41,25 @@ class RolePermissionController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id_role' => 'required',
-            'id_permission' => 'required',
+            'id_user' => 'required',
+            'id_game' => 'required',
+            'choice' => 'required',
         ],
         [
-            'id_role.required' => 'Role is required',
-            'id_permission.required' => 'Permission is required',
+            'id_user.required' => 'User is required',
+            'id_game.required' => 'Game is required',
+            'choice.required' => 'Choice is required',
         ]);
         if($validator->fails())
         {
             return response($validator->errors(),400);
         }
-        $rolePermission = new RolePermission();
-        $rolePermission->id_role = $request->id_role;
-        $rolePermission->id_permission = $request->id_permission;
-        $rolePermission->save();
-        return response()->json(['message'=>'new RolePermission has been created'],201);
+        $like = new Like();
+        $like->id_user = $request->id_user;
+        $like->id_game = $request->id_game;
+        $like->choice = $request->choice;
+        $like->save();
+        return response()->json(['message'=>'new Like has been created'],201);
     }
 
     /**
@@ -67,12 +70,7 @@ class RolePermissionController extends Controller
      */
     public function show($id)
     {
-        $rolePermission = new RolePermission();
-        $rolePermission = $rolePermission->find($id);
-        if($rolePermission::isempty()){
-            return response()->json(['message'=>'No data found'],404);
-        }
-        return response($rolePermission,200);
+        //
     }
 
     /**
@@ -96,26 +94,29 @@ class RolePermissionController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'id_role' => 'required',
-            'id_permission' => 'required',
+            'id_user' => 'required',
+            'id_game' => 'required',
+            'choice' => 'required',
         ],
         [
-            'id_role.required' => 'Role is required',
-            'id_permission.required' => 'Permission is required',
+            'id_user.required' => 'User is required',
+            'id_game.required' => 'Game is required',
+            'choice.required' => 'Choice is required',
         ]);
         if($validator->fails())
         {
             return response($validator->errors(),400);
         }
-        $rolePermission = new RolePermission();
-        $rolePermission = $rolePermission->find($id);
-        if($rolePermission::isempty()){
+        $like = new Like();
+        $like = $like->find($id);
+        if($like::isempty()){
             return response()->json(['message'=>'No data found'],404);
         }
-        $rolePermission->id_role = $request->id_role;
-        $rolePermission->id_permission = $request->id_permission;
-        $rolePermission->save();
-        return response()->json(['message'=>'RolePermission has been updated'],200);
+        $like->id_user = $request->id_user;
+        $like->id_game = $request->id_game;
+        $like->choice = $request->choice;
+        $like->save();
+        return response()->json(['message'=>'Like has been updated'],200);
     }
 
     /**
@@ -126,12 +127,12 @@ class RolePermissionController extends Controller
      */
     public function destroy($id)
     {
-        $rolePermission = new RolePermission();
-        $rolePermission = $rolePermission->find($id);
-        if($rolePermission::isempty()){
+        $like = new Like();
+        $like = $like->find($id);
+        if($like::isempty()){
             return response()->json(['message'=>'No data found'],404);
         }
-        $rolePermission->delete();
-        return response()->json(['message'=>'RolePermission has been deleted'],200);
+        $like->delete();
+        return response()->json(['message'=>'Like has been deleted'],200);
     }
 }
