@@ -72,11 +72,11 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        $permissiom = Permissiom::find($id);
-        if(empty($permissiom))
+        $permission = Permission::find($id);
+        if(empty($permission))
         return response()->json(['response' => 'Permission not found']);
 
-        return response($permissiom,200);
+        return response($permission,200);
     }
 
     /**
