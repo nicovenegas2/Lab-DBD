@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WishList;
+use Illuminate\Support\Facades\Validator;
 
 class WishListController extends Controller
 {

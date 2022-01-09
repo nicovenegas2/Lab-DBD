@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Voucher;
+use Illuminate\Support\Facades\Validator;
 
 class VoucherController extends Controller
 {
