@@ -42,6 +42,13 @@ class DatabaseSeeder extends Seeder
         WishList::factory(10)->create();
         Voucher::factory(15)->create();
         CountryGame::factory(10)->create();
+        Comment::factory(20)->create();
+        ContentVoucher::factory(8)->create();
+        Developer::factory(12)->create();
+        GameKind::factory(15)->create();
+        Kind::factory(6)->create();
+        Like::factory(5)->create();
+        RolePermission::factory(5)->create();
         Library::factory(5)->create();
     }
 }
