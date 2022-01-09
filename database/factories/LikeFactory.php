@@ -14,7 +14,9 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_user' => User::all()->random()->id,
+            'id_game' => Game::all()->random()->id,
+            'choice' => $this->faker->boolean
         ];
     }
 }

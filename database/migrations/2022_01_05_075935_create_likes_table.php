@@ -19,6 +19,7 @@ class CreateLikesTable extends Migration
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_game')->nullable();
             $table->foreign('id_game')->references('id')->on('games');
+            $table->boolean('choice');
             $table->timestamps();
         });
     }

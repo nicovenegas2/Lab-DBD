@@ -13,8 +13,11 @@ class KindFactory extends Factory
      */
     public function definition()
     {
+        $validname = function($name){
+            return strlen($name) < 20;
+            };
         return [
-            //
+            'kind' => $this->faker->valid($validname)->word
         ];
     }
 }
