@@ -16,7 +16,7 @@ class VoucherController extends Controller
     {
         $voucher = new Voucher();
         $voucher = $voucher->all();
-        if(empty($voucher)){
+        if($voucher::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($voucher,200);
