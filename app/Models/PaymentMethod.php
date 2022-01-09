@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentMethod extends Model
 {
+    public function methodBank(){
+    return $this->hasMany('app\Models\MethodBank');
+    }
+
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('app\Models\User');
     }
 
     use HasFactory;
