@@ -23,7 +23,7 @@ class BankController extends Controller
     {
         $bank = new Bank();
         $bank = $bank->all();
-        if($bank::isempty()){
+        if($bank::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($bank,200);

@@ -16,7 +16,7 @@ class KindController extends Controller
     {
         $kind = new Kind();
         $kind = $kind->all();
-        if($kind::isempty()){
+        if($kind::isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         return response($kind,200);
@@ -66,7 +66,7 @@ class KindController extends Controller
     {
         $kind = new Kind();
         $kind = $kind->find($id);
-        if($kind::isempty()){
+        if($kind::isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         return response($kind,200);
@@ -104,7 +104,7 @@ class KindController extends Controller
         }
         $kind = new Kind();
         $kind = $kind->find($id);
-        if($kind::isempty()){
+        if($kind::isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         $kind->kind = $request->kind;
@@ -122,7 +122,7 @@ class KindController extends Controller
     {
         $kind = new Kind();
         $kind = $kind->find($id);
-        if($kind::isempty()){
+        if($kind::isEmpty()){
             return response()->json(['message'=>'No data found'],404);
         }
         $kind->delete();

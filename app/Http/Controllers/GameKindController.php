@@ -16,7 +16,7 @@ class GameKindController extends Controller
     {
         $GKind = new GameKind();
         $GKind = $GKind->all();
-        if($GKind::isempty()){
+        if($GKind::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($GKind,200);

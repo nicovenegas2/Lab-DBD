@@ -70,7 +70,7 @@ class VoucherController extends Controller
     {
         $voucher = new Voucher();
         $voucher = $voucher->find($id);
-        if($voucher::isempty()){
+        if($voucher::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($voucher,200);
@@ -127,7 +127,7 @@ class VoucherController extends Controller
     {
         $voucher = new Voucher();
         $voucher = $voucher->find($id);
-        if($voucher::isempty()){
+        if($voucher::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         $voucher->delete();

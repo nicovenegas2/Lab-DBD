@@ -16,7 +16,7 @@ class WishListController extends Controller
     {
         $WL = new WishList;
         $WL = $WL::all();
-        if($WL::isempty()){
+        if($WL::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($WL,200);

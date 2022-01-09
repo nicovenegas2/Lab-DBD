@@ -16,7 +16,7 @@ class LibraryController extends Controller
     {
         $library = new Library();
         $library = $library->all();
-        if($library::isempty()){
+        if($library::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($library,200);
@@ -70,7 +70,7 @@ class LibraryController extends Controller
     {
         $library = new Library();
         $library = $library->find($id);
-        if($library::isempty()){
+        if($library::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($library,200);

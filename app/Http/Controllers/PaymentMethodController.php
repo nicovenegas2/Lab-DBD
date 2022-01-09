@@ -16,7 +16,7 @@ class PaymentMethodController extends Controller
     {
         $PM = new PaymentMethod();
         $PM = $PM->all();
-        if($PM::isempty()){
+        if($PM::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($PM,200);
@@ -55,7 +55,7 @@ class PaymentMethodController extends Controller
     {
         $PM = new PaymentMethod();
         $PM = $PM->find($id);
-        if($PM::isempty()){
+        if($PM::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($PM,200);
@@ -96,7 +96,7 @@ class PaymentMethodController extends Controller
             return response($validator->errors(), 400);
         $PM = new PaymentMethod();
         $PM = $PM->find($id);
-        if($PM::isempty()){
+        if($PM::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         $PM->name = $request->name;
@@ -124,7 +124,7 @@ class PaymentMethodController extends Controller
             return response($validator->errors(), 400);
         $PM = new PaymentMethod();
         $PM = $PM->find($id);
-        if($PM::isempty()){
+        if($PM::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         $PM->delete();

@@ -16,7 +16,7 @@ class CountryGameController extends Controller
     {
         $CG = new CountryGame();
         $CG = $CG->all();
-        if($CG::isempty()){
+        if($CG::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($CG,200);
@@ -70,7 +70,7 @@ class CountryGameController extends Controller
     {
         $CG = new CountryGame();
         $CG = $CG->find($id);
-        if($CG::isempty()){
+        if($CG::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($CG,200);
@@ -111,7 +111,7 @@ class CountryGameController extends Controller
         }
         $CG = new CountryGame();
         $CG = $CG->find($id);
-        if($CG::isempty()){
+        if($CG::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         $CG->id_countries = $request->id_countries;
@@ -130,7 +130,7 @@ class CountryGameController extends Controller
     {
         $CG = new CountryGame();
         $CG = $CG->find($id);
-        if($CG::isempty()){
+        if($CG::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         $CG->delete();
