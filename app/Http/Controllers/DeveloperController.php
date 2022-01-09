@@ -15,8 +15,8 @@ class DeveloperController extends Controller
      */
     public function index()
     {
-        $developer = $developer->all();
-        if($developer::isEmpty()){
+        $developer = Developer::all();
+        if($developer->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($developer,200);
@@ -52,6 +52,10 @@ class DeveloperController extends Controller
         {
             return response($validator->errors(),400);
         }
+
+        if(!Developer::all()->filter(function ($developer) use ($request) {
+            return $developer->id_user == $request->id_user && $developer->id_game == $request->id_game;
+        })->isEmpty()) return response()->json(['message'=>'Developer repeated'], 400);
         $developer = new Developer();
         $developer->id_user = $request->id_user;
         $developer->id_game = $request->id_game;
@@ -107,8 +111,11 @@ class DeveloperController extends Controller
         {
             return response($validator->errors(),400);
         }
-        $developer = new Developer();
-        $developer = $developer->find($id);
+        if(!Developer::all()->filter(function ($developer) use ($request) {
+            return $developer->id_user == $request->id_user && $developer->id_game == $request->id_game;
+        })->isEmpty()) return response()->json(['message'=>'Developer repeated'], 400);
+
+        $developer =  Developer::find($id);
         if($developer == null){
             return response()->json(['message'=>'No data found'],404);
         }

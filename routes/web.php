@@ -76,3 +76,9 @@ Route::get('/contentvouchers/{id}','ContentVoucherController@show');
 Route::post('/contentvouchers/create','ContentVoucherController@store');
 Route::put('/contentvouchers/update/{id}','ContentVoucherController@update');
 Route::delete('/contentvouchers/delete/{id}','ContentVoucherController@destroy');
+//Routes for Developer
+Route::get('/developers','DeveloperController@index');
+Route::get('/developers/{id}','DeveloperController@show');
+Route::post('/developers/create','DeveloperController@store');
+Route::put('/developers/update/{id}','DeveloperController@update');
+Route::delete('/developers/delete/{id}','DeveloperController@destroy');

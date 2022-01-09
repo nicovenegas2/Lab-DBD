@@ -53,6 +53,10 @@ class FollowerController extends Controller
         if($validator->fails())
             return response($validator->errors(), 400);
         
+        if(!Follower::all()->filter(function ($followers) use ($request) {
+            return $followers->id_follower == $request->id_follower && $followers->id_followed == $request->id_followed;
+        })->isEmpty()) return response()->json(['message'=>'Follower repeated'], 400);
+
         $newfollower = new Follower();
         $newfollower->id_follower = $request->id_follower;
         $newfollower->id_followed = $request->id_followed;
@@ -110,6 +114,10 @@ class FollowerController extends Controller
             );
         if($validator->fails())
             return response($validator->errors(), 400);
+
+        if(!Follower::all()->filter(function ($followers) use ($request) {
+            return $followers->id_follower == $request->id_follower && $followers->id_followed == $request->id_followed;
+        })->isEmpty()) return response()->json(['message'=>'Follower repeated'], 400);
 
         $followers = Follower::find($id);
         
