@@ -35,6 +35,13 @@ class User extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function user_voucher(){
+        return $this->hasMany(Voucher::class);
+    }
+
+    public function user_library(){
+        return $this->hasMany(Library::class);
+    }
 
     use HasFactory;
 }

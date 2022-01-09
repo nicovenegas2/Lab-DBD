@@ -10,6 +10,9 @@ class Country extends Model
     public function user(){
         return $this->hasMany(User::class);
     }
+    public function countryGame(){
+        return $this->hasMany(CountryGame::class);
+    }
     
     use HasFactory;
 }

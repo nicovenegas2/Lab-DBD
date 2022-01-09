@@ -14,6 +14,9 @@ use App\Models\Bank;
 use App\Models\MethodBank;
 use App\Models\Game;
 use App\Models\WishList;
+use App\Models\Voucher;
+use App\Models\CountryGame;
+use App\Models\Library;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -37,5 +40,8 @@ class DatabaseSeeder extends Seeder
         MethodBank::factory(10)->create();
         Game::factory(40)->create();
         WishList::factory(10)->create();
+        Voucher::factory(15)->create();
+        CountryGame::factory(10)->create();
+        Library::factory(5)->create();
     }
 }

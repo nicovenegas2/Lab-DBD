@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\CountryGame;
+use App\Models\Country;
+use App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CountryGameFactory extends Factory
@@ -22,7 +24,9 @@ class CountryGameFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_countries' => Country::all()->random()->id,
+            'id_games' => Game::all()->random()->id,
+            'price' => $this->faker->randomNumber($nbDigits=4)
         ];
     }
 }

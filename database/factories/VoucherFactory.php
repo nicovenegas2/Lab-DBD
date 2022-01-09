@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Voucher;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VoucherFactory extends Factory
@@ -22,7 +23,8 @@ class VoucherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_users' => User::all()->random()->id,
+            'total_amount' => $this->faker->randomNumber($nbDigits=5)
         ];
     }
 }
