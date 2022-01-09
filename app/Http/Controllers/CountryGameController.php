@@ -15,7 +15,6 @@ class CountryGameController extends Controller
      */
     public function index()
     {
-        $CG = new CountryGame();
         $CG = $CG->all();
         if($CG->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
