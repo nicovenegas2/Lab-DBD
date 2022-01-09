@@ -10,6 +10,8 @@ use App\Models\Message;
 use App\Models\PaymentMethod;
 use App\Models\Follower;
 use App\Models\RoleUser;
+use App\Models\Bank;
+use App\Models\MethodBank;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,5 +31,7 @@ class DatabaseSeeder extends Seeder
         PaymentMethod::factory(5)->create();
         Follower::factory(10)->create();
         RoleUser::factory(10)->create();
+        // MethodBank::factory(10)->create();
+
     }
 }
