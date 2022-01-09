@@ -15,6 +15,7 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->char('name', 30);
             $table->integer('age_restriction');
             $table->char('requirements', 2000);
             $table->integer('sold_units');
