@@ -54,10 +54,18 @@ class MethodBankController extends Controller
         {
             return response($validator->errors(),400);
         }
+        $allMBank = new MethodBank();
+        $allMBank = $allMBank->all();
+        foreach($allMBank as $MBank){
+            if($MBank->id_bank == $request->id_bank && $MBank->id_method == $request->id_method){
+                return response()->json(['message'=>'Data already exist'],400);
+            }
+        }
         $MBank = new MethodBank();
-        $MBank->name = $request->name;
+        $MBank->id_bank = $request->id_bank;
+        $MBank->id_method = $request->id_method;
         $MBank->save();
-        return response($MBank,201);
+        return response()->json(['message'=>'Data has been added'],200);
         
     }
 
