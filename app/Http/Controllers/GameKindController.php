@@ -53,11 +53,19 @@ class GameKindController extends Controller
         {
             return response($validator->errors(),400);
         }
+        $allGKind = new GameKind();
+        $allGKind = $allGKind->all();
+        $filtered = $allGKind->filter(function ($item) use ($request) {
+            return $item->id_game == $request->id_game && $item->id_kind == $request->id_kind;
+        });
+        if(!$filtered->isEmpty()){
+            return response()->json(['message'=>'Data already exists'],400);
+        }
         $GKind = new GameKind();
         $GKind->id_game = $request->id_game;
         $GKind->id_kind = $request->id_kind;
         $GKind->save();
-        return response()->json(['message'=>'new GameKind has been created'],201);
+        return response()->json(['message'=>'Data added'],200);
     }
 
     /**

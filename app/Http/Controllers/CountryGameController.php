@@ -54,11 +54,19 @@ class CountryGameController extends Controller
         {
             return response($validator->errors(),400);
         }
+        $allCG = new CountryGame();
+        $allCG = $allCG->all();
+        $filtered $allCG->filter(function ($item) use ($request) {
+            return $item->id_countries == $request->id_countries && $item->id_games == $request->id_games;
+        });
+        if(!$filtered->isEmpty()){
+            return response()->json(['message'=>'Data already exists'],400);
+        }
         $CG = new CountryGame();
         $CG->id_countries = $request->id_countries;
         $CG->id_games = $request->id_games;
         $CG->save();
-        return response()->json(['message'=>'CountryGame created successfully'],201);
+        return response()->json(['message'=>'Data has been added'],200);
     }
 
     /**
