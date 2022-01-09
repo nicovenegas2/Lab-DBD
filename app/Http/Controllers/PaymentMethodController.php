@@ -41,12 +41,39 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(
-            $request->all(),[
-                'name' => 'required|min:2|max:100'
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:2|max:100',
+            'id_user' => 'required',
+        ],
+        [
+            'name.required' => 'Name is required',
+            'name.string' => 'Name must be a string',
+            'name.min' => 'Name must be at least 2 characters',
+            'name.max' => 'Name must be at most 100 characters',
+            'id_user.required' => 'User is required',
+        ]);
+
+        if($validator->fails())
+            return response($validator->errors(), 400);
+        
+        $allLikes = new PaymentMethod();
+        $allLikes = $allLikes->all();
+        $like = new PaymentMethod();
+
+        $filtered = $allLikes->filter(function ($item) use ($request) {
+            return $item->name == $request->name && $item->id_user == $request->id_user ;
+        });
+        if ($filtered->isEmpty()) {
+            $like->name = $request->name;
+            $like->id_user = $request->id_user;
+            $like->save();
+            return response()->json(['message'=>'PaymenMethod created'],201);
+        } else {
+            return response()->json(['message'=>'You already PaymenMethod is created'],400);
+        }
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  int  $id
@@ -56,7 +83,7 @@ class PaymentMethodController extends Controller
     {
         $PM = new PaymentMethod();
         $PM = $PM->find($id);
-        if($PM->isEmpty()){
+        if(empty($PM)){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($PM,200);

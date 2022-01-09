@@ -82,3 +82,21 @@ Route::get('/developers/{id}','DeveloperController@show');
 Route::post('/developers/create','DeveloperController@store');
 Route::put('/developers/update/{id}','DeveloperController@update');
 Route::delete('/developers/delete/{id}','DeveloperController@destroy');
+//Routes for Library
+Route::get('/libraries','LibraryController@index');
+Route::get('/libraries/{id}','LibraryController@show');
+Route::post('/libraries/create','LibraryController@store');
+Route::put('/libraries/update/{id}','LibraryController@update');
+Route::delete('/libraries/delete/{id}','LibraryController@destroy');
+//Routes for Library
+Route::get('/libraries','LibraryController@index');
+Route::get('/libraries/{id}','LibraryController@show');
+Route::post('/libraries/create','LibraryController@store');
+Route::put('/libraries/update/{id}','LibraryController@update');
+Route::delete('/libraries/delete/{id}','LibraryController@destroy');
+//Routes for PaymentMethod
+Route::get('/paymentmethods','PaymentMethodController@index');
+Route::get('/paymentmethods/{id}','PaymentMethodController@show');
+Route::post('/paymentmethods/create','PaymentMethodController@store');
+Route::put('/paymentmethods/update/{id}','PaymentMethodController@update');
+Route::delete('/paymentmethods/delete/{id}','PaymentMethodController@destroy');

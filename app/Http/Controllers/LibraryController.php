@@ -55,13 +55,20 @@ class LibraryController extends Controller
         {
             return response($validator->errors(),400);
         }
+
+        if(!Library::all()->filter(function ($libraries) use ($request) {
+            return $libraries->id_users == $request->id_users && 
+            $libraries->id_games == $request->id_games;
+        })->isEmpty()) return response()->json(['message'=>'Library repeated'], 400);
+
         $library = new Library();
-        $library->name = $request->name;
+        $library->id_users = $request->id_users;
+        $library->id_games = $request->id_games;
         $library->save();
         return response()->json(['message'=>'Library created successfully'],201);
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  int  $id
@@ -69,9 +76,9 @@ class LibraryController extends Controller
      */
     public function show($id)
     {
-        $library = new Library();
-        $library = $library->find($id);
-        if($library->isEmpty()){
+        $library = Library::find($id);
+
+        if(empty($library)){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($library,200);
@@ -88,7 +95,7 @@ class LibraryController extends Controller
         //
     }
 
-    /**
+    /*
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -109,6 +116,11 @@ class LibraryController extends Controller
         {
             return response($validator->errors(),400);
         }
+
+        if(!Library::all()->filter(function ($libraries) use ($request) {
+            return $libraries->id_users == $request->id_users && $libraries->id_games == $request->id_games;
+        })->isEmpty()) return response()->json(['message'=>'Library repeated'], 400);
+
         $library = new Library();
         $library = $library->find($id);
         $library->id_users = $request->id_users;
@@ -125,8 +137,7 @@ class LibraryController extends Controller
      */
     public function destroy($id)
     {
-        $library = new Library();
-        $library = $library->find($id);
+        $library = Library::find($id);
         $library->delete();
         return response()->json(['message'=>'Library deleted successfully'],201);
     }
