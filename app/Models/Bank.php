@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bank extends Model
 {
+    public function methodbank(){
+        return $this->hasMany('App\Models\MethodBank');
+    }
     use HasFactory;
 }
