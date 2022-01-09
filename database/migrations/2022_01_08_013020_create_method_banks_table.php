@@ -15,6 +15,10 @@ class CreateMethodBanksTable extends Migration
     {
         Schema::create('method_banks', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_bank')->nullable();
+            $table->foreign('id_bank')->references('id')->on('banks');
+            $table->bigInteger('id_method')->nullable();
+            $table->foreign('id_method')->references('id')->on('payment_methods');
             $table->timestamps();
         });
     }
