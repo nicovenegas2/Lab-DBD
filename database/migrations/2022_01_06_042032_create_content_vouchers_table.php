@@ -16,7 +16,7 @@ class CreateContentVouchersTable extends Migration
         Schema::create('content_vouchers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_voucher')->nullable();
-            $table->foreign('id_voucher')->references('id')->on('voucher');
+            $table->foreign('id_voucher')->references('id')->on('vouchers');
             $table->unsignedBigInteger('id_game')->nullable();
             $table->foreign('id_game')->references('id')->on('games');
             $table->timestamps();

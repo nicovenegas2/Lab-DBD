@@ -16,7 +16,7 @@ class CreateGameKindsTable extends Migration
         Schema::create('game_kinds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_kind')->nullable();
-            $table->foreign('id_kind')->references('id')->on('kindss');
+            $table->foreign('id_kind')->references('id')->on('kinds');
             $table->unsignedBigInteger('id_game')->nullable();
             $table->foreign('id_game')->references('id')->on('games');
             $table->timestamps();
