@@ -17,6 +17,13 @@ use App\Models\WishList;
 use App\Models\Voucher;
 use App\Models\CountryGame;
 use App\Models\Library;
+use App\Models\Comment;
+use App\Models\ContentVoucher;
+use App\Models\Developer;
+use App\Models\GameKind;
+use App\Models\Kind;
+use App\Models\Like;
+use App\Models\RolePermission;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -45,8 +52,8 @@ class DatabaseSeeder extends Seeder
         Comment::factory(20)->create();
         ContentVoucher::factory(8)->create();
         Developer::factory(12)->create();
-        GameKind::factory(15)->create();
         Kind::factory(6)->create();
+        GameKind::factory(15)->create();
         Like::factory(5)->create();
         RolePermission::factory(5)->create();
         Library::factory(5)->create();

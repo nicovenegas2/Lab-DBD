@@ -20,8 +20,8 @@ class CreateGamesTable extends Migration
             $table->char('requirements', 2000);
             $table->integer('sold_units');
             $table->char('description', 2000);
-            $table->char('demo', 100);
-            $table->char('link', 100);
+            $table->char('demo', 1000);
+            $table->char('link', 1000);
             $table->timestamps();
         });
     }

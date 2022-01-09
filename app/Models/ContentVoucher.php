@@ -13,5 +13,5 @@ class ContentVoucher extends Model
     public function game(){
         return $this->belongsTo(Game::class);
     }
-    se HasFactory;
+    use HasFactory;
 }

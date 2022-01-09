@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\Comment;
 use App\Models\User;
 use App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\Factory;

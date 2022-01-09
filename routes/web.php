@@ -40,3 +40,21 @@ Route::get('/users/{id}','UserController@show');
 Route::post('/users/create','UserController@store');
 Route::put('/users/update/{id}','UserController@update');
 Route::delete('/users/delete/{id}','UserController@destroy');
+//Routes for Voucher
+Route::get('/vouchers','VoucherController@index');
+Route::get('/vouchers/{id}','VoucherController@show');
+Route::post('/vouchers/create','VoucherController@store');
+Route::put('/vouchers/update/{id}','VoucherController@update');
+Route::delete('/vouchers/delete/{id}','VoucherController@destroy');
+//Routes for Game
+Route::get('/games','GameController@index');
+Route::get('/games/{id}','GameController@show');
+Route::post('/games/create','GameController@store');
+Route::put('/games/update/{id}','GameController@update');
+Route::delete('/games/delete/{id}','GameController@destroy');
+//Routes for CountryGame
+Route::get('/countrygames','CountryGameController@index');
+Route::get('/countrygames/{id}','CountryGameController@show');
+Route::post('/countrygames/create','CountryGameController@store');
+Route::put('/countrygames/update/{id}','CountryGameController@update');
+Route::delete('/countrygames/delete/{id}','CountryGameController@destroy');
