@@ -49,13 +49,14 @@ class BankController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:2|max:100',
+            'name' => 'required|string|min:2|max:100|unique:banks,name',
         ],
         [
             'name.required' => 'Name is required',
             'name.string' => 'Name must be a string',
             'name.min' => 'Name must be at least 2 characters',
             'name.max' => 'Name must be at most 100 characters',
+            'name.unique' => 'Name bank repeated',
         ]);
         if($validator->fails())
             return response($validator->errors(), 400);
@@ -103,13 +104,14 @@ class BankController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:2|max:100',
+            'name' => 'required|string|min:2|max:100|unique:banks,name',
         ],
         [
             'name.required' => 'Name is required',
             'name.string' => 'Name must be a string',
             'name.min' => 'Name must be at least 2 characters',
             'name.max' => 'Name must be at most 100 characters',
+            'name.unique' => 'Name bank repeated',
         ]);
         if($validator->fails())
             return response($validator->errors(), 400);

@@ -13,8 +13,7 @@ class ContentVoucherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $contentVoucher = $contentVoucher->all();
         if($contentVoucher->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
@@ -69,7 +68,6 @@ class ContentVoucherController extends Controller
      */
     public function show($id)
     {
-        $contentVoucher = new ContentVoucher();
         $contentVoucher = $contentVoucher->find($id);
         if($contentVoucher == null){
             return respose()->json(['message'=>'No data found'],404);
@@ -111,7 +109,6 @@ class ContentVoucherController extends Controller
         {
             return response($validator->errors(),400);
         }
-        $contentVoucher = new ContentVoucher();
         $contentVoucher = $contentVoucher->find($id);
         if($contentVoucher == null){
             return response()->json(['message'=>'No data found'],404);

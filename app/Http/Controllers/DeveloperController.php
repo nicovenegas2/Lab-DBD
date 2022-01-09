@@ -14,9 +14,8 @@ class DeveloperController extends Controller
      */
     public function index()
     {
-        $developer = new Developer();
         $developer = $developer->all();
-        if($developer->isEmpty()){
+        if($developer::isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($developer,200);

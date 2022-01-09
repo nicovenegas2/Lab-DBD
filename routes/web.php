@@ -64,3 +64,9 @@ Route::get('/likes/{id}','LikeController@show');
 Route::post('/likes/create','LikeController@store');
 Route::put('/likes/update/{id}','LikeController@update');
 Route::delete('/likes/delete/{id}','LikeController@destroy');
+//Routes for WishList
+Route::get('/wishlists','WishListController@index');
+Route::get('/wishlists/{id}','WishListController@show');
+Route::post('/wishlists/create','WishListController@store');
+Route::put('/wishlists/update/{id}','WishListController@update');
+Route::delete('/wishlists/delete/{id}','WishListController@destroy');
