@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\ContentVoucher;
+use App\Models\Game;
+use App\Models\Voucher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContentVoucherFactory extends Factory
@@ -22,7 +24,8 @@ class ContentVoucherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_game' => Game::all()->random()->id,
+            'id_voucher' => Voucher::all()->random()->id,
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Kind;
+use App\Models\Game;
 use App\Models\GameKind;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,8 @@ class GameKindFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_kind' => Kind::all()->random()->id,
+            'id_game' => Game::all()->random()->id,
         ];
     }
 }
