@@ -43,5 +43,16 @@ class User extends Model
         return $this->hasMany(Library::class);
     }
 
+    public function user_comment(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function user_developer(){
+        return $this->hasMany(Developer::class);
+    }
+    
+    public function user_like(){
+        return $this->hasMany(Like::class);
+    }
     use HasFactory;
 }

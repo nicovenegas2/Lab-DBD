@@ -10,6 +10,8 @@ class Voucher extends Model
     public function users(){
         return $this->belongsTo(User::class);
     } 
-
+    public function contentVoucher(){
+        return $this->hasMany(ContentVoucher::class);
+    }
     use HasFactory;
 }

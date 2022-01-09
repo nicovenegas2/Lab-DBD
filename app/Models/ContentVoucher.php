@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentVoucher extends Model
 {
-    use HasFactory;
+    public function voucher(){
+        return $this->belongsTo(Voucher::class);
+    }
+    public function game(){
+        return $this->belongsTo(Game::class);
+    }
+    se HasFactory;
 }

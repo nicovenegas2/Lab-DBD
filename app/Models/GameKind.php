@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameKind extends Model
 {
+    public function game(){
+        return $this->belongsTo(Game::class);
+    }
+    public function kind(){
+        return $this->belongsTo(kind::class);
+    }
     use HasFactory;
 }
