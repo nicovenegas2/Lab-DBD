@@ -88,15 +88,69 @@ Route::get('/libraries/{id}','LibraryController@show');
 Route::post('/libraries/create','LibraryController@store');
 Route::put('/libraries/update/{id}','LibraryController@update');
 Route::delete('/libraries/delete/{id}','LibraryController@destroy');
-//Routes for Library
-Route::get('/libraries','LibraryController@index');
-Route::get('/libraries/{id}','LibraryController@show');
-Route::post('/libraries/create','LibraryController@store');
-Route::put('/libraries/update/{id}','LibraryController@update');
-Route::delete('/libraries/delete/{id}','LibraryController@destroy');
 //Routes for PaymentMethod
 Route::get('/paymentmethods','PaymentMethodController@index');
 Route::get('/paymentmethods/{id}','PaymentMethodController@show');
 Route::post('/paymentmethods/create','PaymentMethodController@store');
 Route::put('/paymentmethods/update/{id}','PaymentMethodController@update');
 Route::delete('/paymentmethods/delete/{id}','PaymentMethodController@destroy');
+//Routes for Bank
+Route::get('/banks','BankController@index');
+Route::get('/banks/{id}','BankController@show');
+Route::post('/banks/create','BankController@store');
+Route::put('/banks/update/{id}','BankController@update');
+Route::delete('/banks/delete/{id}','BankController@destroy');
+//Routes for Comment
+Route::get('/comments','CommentController@index');
+Route::get('/comments/{id}','CommentController@show');
+Route::post('/comments/create','CommentController@store');
+Route::put('/comments/update/{id}','CommentController@update');
+Route::delete('/comments/delete/{id}','CommentController@destroy');
+//Routes for Follower
+Route::get('/followers','CommentController@index');
+Route::get('/followers/{id}','CommentController@show');
+Route::post('/followers/create','CommentController@store');
+Route::put('/followers/update/{id}','CommentController@update');
+Route::delete('/followers/delete/{id}','CommentController@destroy');
+//Routes for GameKind
+Route::get('/gamekinds','GameKindController@index');
+Route::get('/gamekinds/{id}','GameKindController@show');
+Route::post('/gamekinds/create','GameKindController@store');
+Route::put('/gamekinds/update/{id}','GameKindController@update');
+Route::delete('/gamekinds/delete/{id}','GameKindController@destroy');
+//Routes for Kind
+Route::get('/kinds','KindController@index');
+Route::get('/kinds/{id}','KindController@show');
+Route::post('/kinds/create','KindController@store');
+Route::put('/kinds/update/{id}','KindController@update');
+Route::delete('/kinds/delete/{id}','KindController@destroy');
+//Routes for Message
+Route::get('/messages','MessageController@index');
+Route::get('/messages/{id}','MessageController@show');
+Route::post('/messages/create','MessageController@store');
+Route::put('/messages/update/{id}','MessageController@update');
+Route::delete('/messages/delete/{id}','MessageController@destroy');
+//Routes for MethodBank
+Route::get('/methodbanks','MethodBankController@index');
+Route::get('/methodbanks/{id}','MethodBankController@show');
+Route::post('/methodbanks/create','MethodBankController@store');
+Route::put('/methodbanks/update/{id}','MethodBankController@update');
+Route::delete('/methodbanks/delete/{id}','MethodBankController@destroy');
+//Routes for RolePermission
+Route::get('/rolepermissions','RolePermissionController@index');
+Route::get('/rolepermissions/{id}','RolePermission@show');
+Route::post('/rolepermissions/create','RolePermission@store');
+Route::put('/rolepermissions/update/{id}','RolePermission@update');
+Route::delete('/rolepermissions/delete/{id}','RolePermission@destroy');
+//Routes for RoleUser
+Route::get('/roleusers','RoleUserController@index');
+Route::get('/roleusers/{id}','RoleUserController@show');
+Route::post('/roleusers/create','RoleUserController@store');
+Route::put('/roleusers/update/{id}','RoleUserController@update');
+Route::delete('/roleusers/delete/{id}','RoleUserController@destroy');
+
+
+
+
+
+

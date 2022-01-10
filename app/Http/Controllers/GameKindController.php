@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class GameKindController extends Controller
 {
-    /**
+    /*
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,7 +33,7 @@ class GameKindController extends Controller
         //
     }
 
-    /**
+    /*
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -68,7 +68,7 @@ class GameKindController extends Controller
         return response()->json(['message'=>'Data added'],200);
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  int  $id

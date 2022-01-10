@@ -15,7 +15,7 @@ class CountryGameController extends Controller
      */
     public function index()
     {
-        $CG = $CG->all();
+        $CG = CountryGame::all();
         if($CG->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
@@ -53,9 +53,8 @@ class CountryGameController extends Controller
         {
             return response($validator->errors(),400);
         }
-        $allCG = new CountryGame();
-        $allCG = $allCG->all();
-        $filtered $allCG->filter(function ($item) use ($request) {
+        $allCG = CountryGame::all();
+        $filtered = $allCG->filter(function ($item) use ($request) {
             return $item->id_countries == $request->id_countries && $item->id_games == $request->id_games;
         });
         if(!$filtered->isEmpty()){

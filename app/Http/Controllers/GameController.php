@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
-    /
+    /*
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -23,7 +23,7 @@ class GameController extends Controller
         return response($G,200);
     }
 
-    /
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,7 +33,7 @@ class GameController extends Controller
         //
     }
 
-    /
+    /*
      * Store a neGy created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -75,7 +75,7 @@ class GameController extends Controller
         return response($G, 201);
     }
 
-    /
+    /*
      * Display the specified resource.
      *
      * @param  int  $id
@@ -91,7 +91,7 @@ class GameController extends Controller
         return response($G,200);
     }
 
-    /
+    /*
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -102,7 +102,7 @@ class GameController extends Controller
         //
     }
 
-    /
+    /*
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -149,7 +149,7 @@ class GameController extends Controller
         return response()->json(['message'=>'Game updated successfully'],200);
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      *
      * @param  int  $id
