@@ -67,7 +67,7 @@ class KindController extends Controller
     {
         $kind = new Kind();
         $kind = $kind->find($id);
-        if($kind->isEmpty()){
+        if(empty($kind)){
             return response()->json(['message'=>'No data found'],404);
         }
         return response($kind,200);
@@ -123,7 +123,7 @@ class KindController extends Controller
     {
         $kind = new Kind();
         $kind = $kind->find($id);
-        if($kind->isEmpty()){
+        if(empty($kind)){
             return response()->json(['message'=>'No data found'],404);
         }
         $kind->delete();

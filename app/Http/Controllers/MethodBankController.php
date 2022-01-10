@@ -79,7 +79,7 @@ class MethodBankController extends Controller
     {
         $MBank = new MethodBank();
         $MBank = $MBank->find($id);
-        if($MBank->isEmpty()){
+        if(empty($MBank)){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($MBank,200);
@@ -137,7 +137,7 @@ class MethodBankController extends Controller
     {
         $MBank = new MethodBank();
         $MBank = $MBank->find($id);
-        if($MBank->isEmpty()){
+        if(empty($MBank)){
             return response()->json(['message'=>'No data found'],404);
         }
         $MBank->delete();

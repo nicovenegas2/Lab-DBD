@@ -138,7 +138,7 @@ class CountryGameController extends Controller
     {
         $CG = new CountryGame();
         $CG = $CG->find($id);
-        if($CG->isEmpty()){
+        if(empty($CG)){
             return respose()->json(['message'=>'No data found'],404);
         }
         $CG->delete();

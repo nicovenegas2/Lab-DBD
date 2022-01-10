@@ -141,7 +141,7 @@ class LikeController extends Controller
     {
         $like = new Like();
         $like = $like->find($id);
-        if($like->isEmpty()){
+        if(empty($like)){
             return response()->json(['message'=>'No data found'],404);
         }
         $like->delete();

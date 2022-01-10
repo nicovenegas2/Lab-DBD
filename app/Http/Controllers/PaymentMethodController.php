@@ -152,7 +152,7 @@ class PaymentMethodController extends Controller
             return response($validator->errors(), 400);
         $PM = new PaymentMethod();
         $PM = $PM->find($id);
-        if($PM->isEmpty()){
+        if(empty($PM)){
             return respose()->json(['message'=>'No data found'],404);
         }
         $PM->delete();

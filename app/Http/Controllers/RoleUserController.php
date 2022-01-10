@@ -70,7 +70,7 @@ class RoleUserController extends Controller
     {
         $roleUser = new RoleUser();
         $roleUser = $roleUser->find($id);
-        if($roleUser->isEmpty()){
+        if(empty($roleUser)){
             return respose()->json(['message'=>'No data found'],404);
         }
         return response($roleUser,200);
@@ -129,7 +129,7 @@ class RoleUserController extends Controller
     {
         $roleUser = new RoleUser();
         $roleUser = $roleUser->find($id);
-        if($roleUser->isEmpty()){
+        if(empty($roleUser)){
             return respose()->json(['message'=>'No data found'],404);
         }
         $roleUser->delete();
