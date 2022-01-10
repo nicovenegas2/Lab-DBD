@@ -42,7 +42,7 @@ class KindController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'kind' => 'required',
+            'kind' => 'required|unique:kinds,kind',
         ],
         [
             'kind.required' => 'Kind is required',
@@ -51,6 +51,7 @@ class KindController extends Controller
         {
             return response($validator->errors(),400);
         }
+
         $kind = new Kind();
         $kind->kind = $request->kind;
         $kind->save();
