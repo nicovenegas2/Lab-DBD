@@ -16,7 +16,7 @@ class ContentVoucherController extends Controller
     public function index(){
         $contentVoucher = ContentVoucher::all();
         if($contentVoucher->isEmpty()){
-            return respose()->json(['message'=>'No data found'],404);
+            return response()->json(['message'=>'No data found'],404);
         }
         return response($contentVoucher,200);
     }
@@ -75,8 +75,8 @@ class ContentVoucherController extends Controller
     public function show($id)
     {
         $contentVoucher = ContentVoucher::find($id);
-        if($contentVoucher == null){
-            return respose()->json(['message'=>'No data found'],404);
+        if(empty($contentVoucher)){
+            return response()->json(['message'=>'No data found'],404);
         }
         return response($contentVoucher,200);
     }
@@ -120,7 +120,7 @@ class ContentVoucherController extends Controller
         })->isEmpty()) return response()->json(['message'=>'ContentVoucher repeated'],400);
 
         $contentVoucher = ContentVoucher::find($id);
-        if($contentVoucher == null){
+        if(empty($contentVoucher)){
             return response()->json(['message'=>'No data found'],404);
         }
         $contentVoucher->id_game = $request->id_game;
@@ -137,8 +137,7 @@ class ContentVoucherController extends Controller
      */
     public function destroy($id)
     {
-        $contentVoucher = new ContentVoucher();
-        $contentVoucher = $contentVoucher->find($id);
+        $contentVoucher = ContentVoucher::find($id);
         if($contentVoucher == null){
             return response()->json(['message'=>'No data found'],404);
         }
