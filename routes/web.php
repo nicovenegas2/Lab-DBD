@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/introMessages', function () {
+    return view('introMessages');
+});
+
 //Routes for Country 
 Route::get('/countries','CountryController@index');
 Route::get('/countries/{id}','CountryController@show');
