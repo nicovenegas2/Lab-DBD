@@ -23,6 +23,53 @@ class UserController extends Controller
         return response($users, 200);
     }
 
+    public function register(Request $request){
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min:2|max:30',
+                'nickname' => 'required|min:2|max:30|unique:users,nickname',
+                'email' => 'required|min:2|max:30',
+                'password' => 'required|min:2|max:30',
+                'birthday' => 'required',
+                'id_country' => 'required',
+            ],
+            [
+                'name.required' => 'Name required',
+                'name.unique' => 'Name repeted',
+                'name.min' => 'Name min chars 2',
+                'name.max' => 'Name max chars 30',
+                'nickname.required' => 'Nickname required',
+                'nickname.min' => 'Nickname min chars 2',
+                'nickname.max' => 'Nickname max chars 30',
+                'email.required' => 'Email required',
+                'email.min' => 'Email min chars 2',
+                'email.max' => 'Email max chars 30',
+                'password.required' => 'Nickname required',
+                'password.min' => 'Nickname min chars 2',
+                'password.max' => 'Nickname max chars 30',
+                'birthday.required' => 'Birthday required',
+                'id_country.required' => 'Id of country required',
+            ]
+            );
+        
+        if($validator->fails())
+            return redirect('/register');
+
+
+        $newUser = new User();
+        $newUser->nickname = $request->nickname;
+        $newUser->name = $request->name;
+        $newUser->email = $request->email;
+        $newUser->password = $request->password;
+        $newUser->wallet = 0;
+        $newUser->birthday = $request->birthday;
+        $newUser->id_country = $request->id_country;
+        $newUser->save();
+
+        return redirect('/login');
+    }
+
+
     public function loguser(Request $request){
         $purgar = function($string){
             while(substr($string,-1) == " "){
@@ -103,7 +150,7 @@ class UserController extends Controller
         $newUser->name = $request->name;
         $newUser->email = $request->email;
         $newUser->password = $request->password;
-        $newUser->wallet = $request->wallet;
+        $newUser->wallet = 0;
         $newUser->birthday = $request->birthday;
         $newUser->id_country = $request->id_country;
         $newUser->save();

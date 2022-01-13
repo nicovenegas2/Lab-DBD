@@ -33,6 +33,8 @@ Route::get('/countries/{id}','CountryController@show');
 Route::post('/countries/create','CountryController@store');
 Route::put('/countries/update/{id}','CountryController@update');
 Route::delete('/countries/delete/{id}','CountryController@destroy');
+Route::get('/register', 'CountryController@showallcountries');
+
 //Routes for Permission
 Route::get('/permissions','PermissionController@index');
 Route::get('/permissions/{id}','PermissionController@show');
@@ -50,6 +52,7 @@ Route::delete('/roles/delete/{id}','RoleController@destroy');
 //Routes for Users
 Route::get('/users/loguser','UserController@loguser');
 Route::get('/logout','UserController@logout');
+Route::post('/users/register', 'UserController@register');
 
 Route::get('/users','UserController@index');
 Route::get('/users/{id}','UserController@show');

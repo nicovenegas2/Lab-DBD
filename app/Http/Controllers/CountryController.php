@@ -31,6 +31,11 @@ class CountryController extends Controller
         //
     }
 
+    public function showallcountries(){
+        $countries = Country::all()->sortByDesc('name')->reverse();
+        return view('register', compact('countries'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

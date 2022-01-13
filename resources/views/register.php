@@ -22,30 +22,46 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h4 class="mb-3">Inicio de Sesion</h4>
-                <form action="/users/loguser" method='GET'>
+                <h4 class="mb-3">Registro</h4>
+                <form action="/users/register" method='POST'>
                     <div class="mb-3">
                         <label for="nickname" class="form-label">Nombre de Usuario</label>
                         <input type="text" class="form-control" id="nickname" name="nickname" value="">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" value="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo electronico</label>
+                        <input type="email" class="form-control" id="email" name="email" value="">
+                    </div>
+
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password"value="">
                     </div>
+
                     <div class="mb-3">
-                        <label for="id_role" class="form-label">Tipo de rol</label>
-                        <select class="form-select" aria-label="Seleccione un tipo de Rol" name="id_role" id="id_role">
+                        <label for="birthday" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday"value="">
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="id_country" class="form-label">Pais</label>
+                        <select class="form-select" aria-label="Seleccione su pais" name="id_country" id="id_country">
                         <?php
-                        foreach ($roles as $role) {
-                            print "<option value='$role->id'>$role->name</option>";
+                        foreach ($countries as $country) {
+                            print "<option value='$country->id'>$country->name</option>";
                         }
                         ?>
                         </select>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class="ms-3 link-secondary" href="">Olvidaste tu contraseña?<a>
-                        <a class="ms-3 link-secondary" href="/register">Registrate YA!<a>
                     </div>
                 </form>
             </div>
