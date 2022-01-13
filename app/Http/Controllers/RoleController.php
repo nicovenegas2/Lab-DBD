@@ -22,6 +22,11 @@ class RoleController extends Controller
         return response($roles, 200);
     }
 
+    public function showallroles(){
+        $roles = Role::all();
+        return view('login', compact('roles'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

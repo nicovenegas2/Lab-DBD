@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Game;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -20,6 +21,32 @@ class UserController extends Controller
         return response()->json(['response' => 'Users not founded']);
 
         return response($users, 200);
+    }
+
+    public function loguser(Request $request){
+        $purgar = function($string){
+            while(substr($string,-1) == " "){
+                $string = substr($string,0,strlen($string)-1);
+            }
+            return $string;
+        };
+
+        foreach (User::all() as $user) {
+            if($request->nickname == $purgar($user->nickname)){
+                if($request->password == $purgar($user->password)){
+                    setcookie("usuario", $request->nickname, time()+3600,"/");
+                    return redirect('/');
+                }
+                $error = "Contraseña incorrecta";
+                return redirect('/login');
+            }
+        }
+        return redirect('/login');
+    }
+    public function logout(){
+        unset($_COOKIE['usuario']);
+        setcookie('usuario', '', time() - 3600, '/');
+        return redirect('/');
     }
 
     /**

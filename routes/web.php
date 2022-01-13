@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,13 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('home');
-});
+}); */
 
-Route::get('/introMessages', function () {
-    return view('introMessages');
-});
+/* Route::get('/login', function () {
+    return view('login');
+}); */
 
 //Routes for Country 
 Route::get('/countries','CountryController@index');
@@ -39,12 +40,17 @@ Route::post('/permissions/create','PermissionController@store');
 Route::put('/permissions/update/{id}','PermissionController@update');
 Route::delete('/permissions/delete/{id}','PermissionController@destroy');
 //Routes for Roles
+Route::get('/login','RoleController@showallroles');
+
 Route::get('/roles','RoleController@index');
 Route::get('/roles/{id}','RoleController@show');
 Route::post('/roles/create','RoleController@store');
 Route::put('/roles/update/{id}','RoleController@update');
 Route::delete('/roles/delete/{id}','RoleController@destroy');
 //Routes for Users
+Route::get('/users/loguser','UserController@loguser');
+Route::get('/logout','UserController@logout');
+
 Route::get('/users','UserController@index');
 Route::get('/users/{id}','UserController@show');
 Route::post('/users/create','UserController@store');
@@ -57,6 +63,8 @@ Route::post('/vouchers/create','VoucherController@store');
 Route::put('/vouchers/update/{id}','VoucherController@update');
 Route::delete('/vouchers/delete/{id}','VoucherController@destroy');
 //Routes for Game
+Route::get('/','GameController@showtrends');
+
 Route::get('/games','GameController@index');
 Route::get('/games/{id}','GameController@show');
 Route::post('/games/create','GameController@store');

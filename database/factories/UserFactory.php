@@ -23,7 +23,7 @@ class UserFactory extends Factory
     public function definition()
     {
         $validname = function($name){
-            return strlen($name) < 20;
+            return strlen($name) < 30;
             };
         return [
             'nickname' => $this->faker->valid($validname)->name,

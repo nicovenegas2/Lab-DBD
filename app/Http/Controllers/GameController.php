@@ -33,6 +33,11 @@ class GameController extends Controller
         //
     }
 
+    public function showtrends(){
+        $games = Game::all()->sortByDesc('sold_units');
+        return view('home',compact('games'));
+    }
+
     /*
      * Store a neGy created resource in storage.
      *
