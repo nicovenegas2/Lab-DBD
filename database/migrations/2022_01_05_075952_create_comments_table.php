@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_game')->nullable();
             $table->foreign('id_game')->references('id')->on('games');
-            $table->char('comment', 5000);
+            $table->string('comment', 5000);
             $table->timestamps();
         });
     }

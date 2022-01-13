@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->foreign('id_sender')->references('id')->on('users');
             $table->bigInteger('id_receiver')->nullable();
             $table->foreign('id_receiver')->references('id')->on('users');
-            $table->char('content', 5000);
+            $table->string('content', 5000);
             $table->date('date');
             $table->timestamps();
         });

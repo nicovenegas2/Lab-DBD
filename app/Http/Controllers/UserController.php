@@ -24,16 +24,9 @@ class UserController extends Controller
     }
 
     public function forgottenpassword(Request $request){
-        $purgar = function($string){
-            while(substr($string,-1) == " "){
-                $string = substr($string,0,strlen($string)-1);
-            }
-            return $string;
-        };
-
         foreach (User::all() as $user) {
-            if($request->nickname == $purgar($user->nickname)){
-                if($request->email == $purgar($user->email)){
+            if($request->nickname == $user->nickname){
+                if($request->email == $user->email){
                     $nickname = $user->nickname;
                     return view('changepassword', compact('nickname'));
                 }
@@ -46,15 +39,8 @@ class UserController extends Controller
     }
 
     public function changepassword(Request $request){
-        $purgar = function($string){
-            while(substr($string,-1) == " "){
-                $string = substr($string,0,strlen($string)-1);
-            }
-            return $string;
-        };
-
         foreach (User::all() as $user) {
-            if($request->nickname == $purgar($user->nickname)){
+            if($request->nickname == $user->nickname){
                 $user->password = $request->password;
                 $user->save();
                 return redirect('/login');
@@ -110,16 +96,9 @@ class UserController extends Controller
 
 
     public function loguser(Request $request){
-        $purgar = function($string){
-            while(substr($string,-1) == " "){
-                $string = substr($string,0,strlen($string)-1);
-            }
-            return $string;
-        };
-
         foreach (User::all() as $user) {
-            if($request->nickname == $purgar($user->nickname)){
-                if($request->password == $purgar($user->password)){
+            if($request->nickname == $user->nickname){
+                if($request->password == $user->password){
                     setcookie("usuario", $request->nickname, time()+3600,"/");
                     return redirect('/');
                 }
