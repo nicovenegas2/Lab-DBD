@@ -16,9 +16,8 @@
 <body>
     <?php
     setcookie("session","Zapatillas a luca hrmn");
-    include('includes/navbar.blade.php')
     ?>
-
+    @include('includes.navbar')
     <div class="container">
         <div class="row">
             <div class="col">

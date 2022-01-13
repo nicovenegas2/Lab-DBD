@@ -23,6 +23,45 @@ class UserController extends Controller
         return response($users, 200);
     }
 
+    public function forgottenpassword(Request $request){
+        $purgar = function($string){
+            while(substr($string,-1) == " "){
+                $string = substr($string,0,strlen($string)-1);
+            }
+            return $string;
+        };
+
+        foreach (User::all() as $user) {
+            if($request->nickname == $purgar($user->nickname)){
+                if($request->email == $purgar($user->email)){
+                    $nickname = $user->nickname;
+                    return view('changepassword', compact('nickname'));
+                }
+                $user = new User();
+
+                return response($user, 200);
+            }
+        }
+        return redirect('/');
+    }
+
+    public function changepassword(Request $request){
+        $purgar = function($string){
+            while(substr($string,-1) == " "){
+                $string = substr($string,0,strlen($string)-1);
+            }
+            return $string;
+        };
+
+        foreach (User::all() as $user) {
+            if($request->nickname == $purgar($user->nickname)){
+                $user->password = $request->password;
+                $user->save();
+                return redirect('/login');
+            }
+        }
+    }
+
     public function register(Request $request){
         $validator = Validator::make(
             $request->all(),[

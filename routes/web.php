@@ -23,9 +23,9 @@ Route::get('/', function () {
     return view('home');
 }); */
 
-/* Route::get('/login', function () {
-    return view('login');
-}); */
+Route::get('/forgottenpassword', function () {
+    return view('forgottenpassword');
+});
 
 //Routes for Country 
 Route::get('/countries','CountryController@index');
@@ -53,6 +53,7 @@ Route::delete('/roles/delete/{id}','RoleController@destroy');
 Route::get('/users/loguser','UserController@loguser');
 Route::get('/logout','UserController@logout');
 Route::post('/users/register', 'UserController@register');
+Route::get('/users/forgottenpassword', 'UserController@forgottenpassword');
 
 Route::get('/users','UserController@index');
 Route::get('/users/{id}','UserController@show');

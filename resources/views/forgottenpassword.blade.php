@@ -16,36 +16,23 @@
 <body>
     <?php
     setcookie("session","Zapatillas a luca hrmn");
-    include('includes/navbar.blade.php')
     ?>
-
+    @include('includes.navbar')
     <div class="container">
         <div class="row">
             <div class="col">
-                <h4 class="mb-3">Inicio de Sesion</h4>
-                <form action="/users/loguser" method='GET'>
+                <h4 class="mb-3">Recuperación de contraseña</h4>
+                <form action="/users/forgottenpassword" method='GET'>
                     <div class="mb-3">
                         <label for="nickname" class="form-label">Nombre de Usuario</label>
                         <input type="text" class="form-control" id="nickname" name="nickname" value="">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"value="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_role" class="form-label">Tipo de rol</label>
-                        <select class="form-select" aria-label="Seleccione un tipo de Rol" name="id_role" id="id_role">
-                        <?php
-                        foreach ($roles as $role) {
-                            print "<option value='$role->id'>$role->name</option>";
-                        }
-                        ?>
-                        </select>
+                        <label for="email" class="form-label">Correo electronico</label>
+                        <input type="email" class="form-control" id="email" name="email"value="">
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class="ms-3 link-secondary" href="">Olvidaste tu contraseña?<a>
-                        <a class="ms-3 link-secondary" href="/register">Registrate YA!<a>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
