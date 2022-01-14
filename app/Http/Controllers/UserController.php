@@ -99,6 +99,7 @@ class UserController extends Controller
         foreach (User::all() as $user) {
             if($request->nickname == $user->nickname){
                 if($request->password == $user->password){
+                    setcookie("money",$user->wallet, time()+3600,"/");
                     setcookie("usuario", $request->nickname, time()+3600,"/");
                     return redirect('/');
                 }

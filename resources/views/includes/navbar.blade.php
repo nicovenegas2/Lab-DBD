@@ -1,12 +1,13 @@
  <?php
     try {
-        $_COOKIE["usuario"];
+        $nickname = $_COOKIE["usuario"];
+        $money = $_COOKIE["money"];
         $atribute = "";
         $showit = "";
         print  "<header class='mb-5'>
                     <nav class='navbar navbar-expand-lg navbar-light' style='background-color: #C2E1F7;'>
                         <div class='container-fluid'>
-                            <a class='navbar-brand' href='/'>Lab-DBD</a>
+                            <a class='navbar-brand' href='/'>{$nickname}</a>
                             <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
                                 data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false'
                                 aria-label='Toggle navigation'>
@@ -39,7 +40,7 @@
                                     </li>
                                 </ul>
                                 <div class='position-relative me-4'>
-                                <p class='position-absolute top-50 start-50 translate-middle' style='width:5rem;'>Money: {$user->wallet}</p>
+                                <p class='position-absolute top-50 start-50 translate-middle' >Money: {$money}</p>
                                 </div>
                                 <a href='/#'>
                                     <button class='btn btn-md btn-outline-primary mx-3' role='button'>

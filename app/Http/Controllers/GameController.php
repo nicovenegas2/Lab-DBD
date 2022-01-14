@@ -35,19 +35,8 @@ class GameController extends Controller
     }
 
     public function showtrends(){
-        try {
-            $nombreusuario = $_COOKIE["usuario"];
-            foreach (User::all() as $user) {
-                if($nombreusuario == $user->nickanme){
-                    break;
-                }
-                    
-            }
-        } catch (\Throwable $th) {
-            $user = new User();
-        }
         $games = Game::all()->sortByDesc('sold_units');
-        return view('home',compact('games'), compact('user'));
+        return view('home',compact('games'));
     }
 
     /*
