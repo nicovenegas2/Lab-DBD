@@ -82,10 +82,10 @@
                                         <a class='nav-link active' aria-current='page' href='/countries'>Home</a>
                                     </li>
                                     <li class='nav-item'>
-                                        <a class='nav-link {{$atribute}}' href='#'>Biblioteca</a>
+                                        <a class='nav-link {$atribute}' href='#'>Biblioteca</a>
                                     </li>
                                     <li class='nav-item dropdown '>
-                                        <a class='nav-link dropdown-toggle {{$atribute}}' href='#' id='navbarDropdown' role='button'
+                                        <a class='nav-link dropdown-toggle {$atribute}' href='#' id='navbarDropdown' role='button'
                                             data-bs-toggle='dropdown' aria-expanded='false'>
                                             Dropdown
                                         </a>
@@ -99,7 +99,7 @@
                                         </ul>
                                     </li>
                                     <li class='nav-item'>
-                                        <a class='nav-link {{$atribute}}' href='#'>Lista Deseados</a>
+                                        <a class='nav-link {$atribute}' href='#'>Lista Deseados</a>
                                     </li>
                                 </ul>
                                 <a href='/#'>
