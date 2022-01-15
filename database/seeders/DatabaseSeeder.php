@@ -56,6 +56,6 @@ class DatabaseSeeder extends Seeder
         GameKind::factory(15)->create();
         Like::factory(5)->create();
         RolePermission::factory(5)->create();
-        Library::factory(100)->create();
+        Library::factory(200)->create();
     }
 }

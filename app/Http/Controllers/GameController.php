@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Library;
 
 class GameController extends Controller
 {
@@ -37,6 +38,29 @@ class GameController extends Controller
     public function showtrends(){
         $games = Game::all()->sortByDesc('sold_units');
         return view('home',compact('games'));
+    }
+
+    public function showlibrary(){
+        $username = $_COOKIE['usuario'];
+        $id = 0;
+        foreach (User::all() as $user){
+            if($user->nickname == $username){
+                $id = $user->id;
+                break;
+            }
+        }
+        $games = collect([]);
+        foreach (Library::all() as $library){
+            if($library->id_users == $id){
+                foreach (Game::all() as $game){
+                    if($game->id == $library->id_games){
+                        $games->prepend($game);
+                        break;
+                    }
+                }
+            }
+        }
+        return view('library',compact('games'));
     }
 
     /*

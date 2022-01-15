@@ -19,7 +19,7 @@
                                         <a class='nav-link active' aria-current='page' href='/countries'>Home</a>
                                     </li>
                                     <li class='nav-item'>
-                                        <a class='nav-link {$atribute}' href='#'>Biblioteca</a>
+                                        <a class='nav-link {$atribute}' href='/games/showlibrary'>Biblioteca</a>
                                     </li>
                                     <li class='nav-item dropdown '>
                                         <a class='nav-link dropdown-toggle {$atribute}' href='#' id='navbarDropdown' role='button'
@@ -80,7 +80,7 @@
                             <div class='collapse navbar-collapse' id='navbarSupportedContent'>
                                 <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                                     <li class='nav-item'>
-                                        <a class='nav-link active' aria-current='page' href='/countries'>Home</a>
+                                        <a class='nav-link active' aria-current='page' href='/'>Home</a>
                                     </li>
                                     <li class='nav-item'>
                                         <a class='nav-link {$atribute}' href='#'>Biblioteca</a>

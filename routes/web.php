@@ -69,7 +69,7 @@ Route::put('/vouchers/update/{id}','VoucherController@update');
 Route::delete('/vouchers/delete/{id}','VoucherController@destroy');
 //Routes for Game
 Route::get('/','GameController@showtrends');
-
+Route::get('/games/showlibrary','GameController@showlibrary');
 Route::get('/games','GameController@index');
 Route::get('/games/{id}','GameController@show');
 Route::post('/games/create','GameController@store');
