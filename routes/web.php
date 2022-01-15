@@ -60,6 +60,7 @@ Route::get('/users/{id}','UserController@show');
 Route::post('/users/create','UserController@store');
 Route::put('/users/update/{id}','UserController@update');
 Route::delete('/users/delete/{id}','UserController@destroy');
+Route::get('/changeaccountinfo', 'UserController@getinfo');
 //Routes for Voucher
 Route::get('/vouchers','VoucherController@index');
 Route::get('/vouchers/{id}','VoucherController@show');

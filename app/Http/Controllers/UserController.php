@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Game;
+use App\Models\Country;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -47,6 +48,21 @@ class UserController extends Controller
             }
         }
     }
+
+    public function getinfo(){
+        $nickname = $_COOKIE['usuario'];
+        $theuser = new User();
+        foreach (User::all() as $user) {
+            if($nickname == $user->nickname){
+                $theuser = $user;
+                $thecountry = Country::find($theuser->id_country)->name;
+                $countries = Country::all();
+                return view('accountinformation', compact('theuser'), compact('countries'))->with('thecountry', $thecountry);
+            }
+        }
+        return redirect('/');
+    }
+
 
     public function register(Request $request){
         $validator = Validator::make(
@@ -216,8 +232,8 @@ class UserController extends Controller
     {
         $validator = Validator::make(
             $request->all(),[
-                'name' => 'required|min:2|max:30|unique:users,name',
-                'nickname' => 'required|min:2|max:30',
+                'name' => 'required|min:2|max:30',
+                'nickname' => 'required|min:2|max:30|unique:users,nickname',
                 'email' => 'required|min:2|max:30',
                 'password' => 'required|min:2|max:30',
                 'birthday' => 'required',
@@ -225,7 +241,7 @@ class UserController extends Controller
             ],
             [
                 'name.required' => 'Name required',
-                'name.unique' => 'Name repeted',
+                'nickname.unique' => 'Nickname repeated',
                 'name.min' => 'Name min chars 2',
                 'name.max' => 'Name max chars 30',
                 'nickname.required' => 'Nickname required',
@@ -254,13 +270,11 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->wallet = $request->wallet;
+        $user->wallet = $user->wallet;
         $user->birthday = $request->birthday;
         $user->id_country = $request->id_country;
         $user->save();
-        return response()->json([
-            'response' => 'User modified'
-        ],200);
+        return redirect('/');
     }
 
     /**

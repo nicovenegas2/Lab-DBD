@@ -55,7 +55,7 @@
                                         Opciones
                                     </button>
                                     <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                                        <li><a class='dropdown-item' href='#'>Action</a></li>
+                                        <li><a class='dropdown-item' href='/changeaccountinfo'>Actualizar información</a></li>
                                         <li><a class='dropdown-item' href='#'>Another action</a></li>
                                         <li class='divider'></li>
                                         <li><a class='dropdown-item' href='/logout'>Cerrar Sesion</a></li>

@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
     {
         Permission::factory(10)->create();
         Country::factory(10)->create();
-        User::factory(40)->create();
+        User::factory(5)->create();
         Role::factory(3)->create();
         Message::factory(10)->create();
         PaymentMethod::factory(5)->create();
@@ -56,6 +56,6 @@ class DatabaseSeeder extends Seeder
         GameKind::factory(15)->create();
         Like::factory(5)->create();
         RolePermission::factory(5)->create();
-        Library::factory(5)->create();
+        Library::factory(100)->create();
     }
 }
