@@ -40,6 +40,14 @@ class GameController extends Controller
         return view('home',compact('games'));
     }
 
+    public function showgames(){
+        $games = Game::all();
+        
+
+        return view('tienda',compact('games'));
+
+    }
+
     public function showlibrary(){
         $username = $_COOKIE['usuario'];
         $id = 0;

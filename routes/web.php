@@ -75,6 +75,7 @@ Route::get('/games/{id}','GameController@show');
 Route::post('/games/create','GameController@store');
 Route::put('/games/update/{id}','GameController@update');
 Route::delete('/games/delete/{id}','GameController@destroy');
+Route::get('/shop', 'GameController@showgames');
 //Routes for CountryGame
 Route::get('/countrygames','CountryGameController@index');
 Route::get('/countrygames/{id}','CountryGameController@show');
