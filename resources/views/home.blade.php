@@ -33,7 +33,7 @@
                             <h5 class='card-title'>$game->name</h5>
                             <p class='card-text' style='font-size: 1rem;'>$subdescription</p>
                             <div class='row justify-content-md-center my-2 mr-2'>
-                                <a href='#' class='btn btn-secondary col-5 pt-2 ms-3 mb-3 position-absolute bottom-0 start-0'>Comprar</a>
+                                <a href='/games/$game->id' class='btn btn-secondary col-5 pt-2 ms-3 mb-3 position-absolute bottom-0 start-0'>Comprar</a>
                                 <p class='card-text col-5 me-3 mb-3 position-absolute bottom-0 end-0'>Vendidos: $game->sold_units</p>
                             </div>
                         </div>
@@ -43,6 +43,7 @@
             </div>
         </div>
     </section>
+    @include('includes.footer')
 </body>
 
 </html>

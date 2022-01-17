@@ -27,6 +27,10 @@ Route::get('/forgottenpassword', function () {
     return view('forgottenpassword');
 });
 
+Route::get('/try', function () {
+    return view('showonegame');
+});
+
 //Routes for Country 
 Route::get('/countries','CountryController@index');
 Route::get('/countries/{id}','CountryController@show');
@@ -67,10 +71,11 @@ Route::post('/vouchers/create','VoucherController@store');
 Route::put('/vouchers/update/{id}','VoucherController@update');
 Route::delete('/vouchers/delete/{id}','VoucherController@destroy');
 //Routes for Game
+Route::get('/games/{id}','GameController@showonegame');
 Route::get('/','GameController@showtrends');
 Route::get('/games/showlibrary','GameController@showlibrary');
 Route::get('/games','GameController@index');
-Route::get('/games/{id}','GameController@show');
+//Route::get('/games/{id}','GameController@show');
 Route::post('/games/create','GameController@store');
 Route::put('/games/update/{id}','GameController@update');
 Route::delete('/games/delete/{id}','GameController@destroy');

@@ -15,7 +15,7 @@ class CommentFactory extends Factory
         return [
             'id_user' => User::all()->random()->id,
             'id_game' => Game::all()->random()->id,
-            'comment'=> $this->faker->text($maxNbChars = 5000),
+            'comment'=> $this->faker->text($maxNbChars = 500),
         ];
     }
 }

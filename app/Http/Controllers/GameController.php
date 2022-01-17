@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Comment;
+use App\Models\Kind;
+use App\Models\GameKind;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Library;
 
@@ -69,6 +72,25 @@ class GameController extends Controller
             }
         }
         return view('library',compact('games'));
+    }
+
+        public function showonegame($id){
+        $thegame = Game::all()->find($id);
+        
+        $comentarios = collect([]);
+        $categorias = collect([]);
+        foreach (Comment::all() as $comment) {
+            if ($comment->id_game == $id) {
+                $comentarios->prepend([User::all()->find($comment->id_user)->nickname, $comment->comment]);
+            }
+        }
+        foreach (GameKind::all() as $gamekind) {
+            if ($gamekind->id_game == $id) {
+                $categorias->prepend(Kind::all()->find($gamekind->id_kind)->kind);
+            }
+        }
+
+        return view('showonegame', compact('thegame'),compact('comentarios'))->with('categorias', $categorias);
     }
 
     /*

@@ -32,7 +32,7 @@
                          <a class="nav-link {{$atribute}}" href="/games/showlibrary">Biblioteca</a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link {{$atribute}}" href="#">Tienda</a>
+                         <a class="nav-link {{$atribute}}" href="/shop">Tienda</a>
                      </li>
                      <li class="nav-item dropdown ">
                          <a class="nav-link dropdown-toggle {{$atribute}}" href="#" id="navbarDropdown" role="button"
