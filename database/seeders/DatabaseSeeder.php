@@ -35,10 +35,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $newcountrygame = function($idgame, $idcountry){
+            $new = new CountryGame();
+            $new->id_countries = $idcountry;
+            $new->id_games = $idgame;
+            $new->price = rand(0,999999);
+            $new->save();
+        };
+
         Permission::factory(10)->create();
         Country::factory(10)->create();
         User::factory(5)->create();
-        Role::factory(3)->create();
+        #Generacion roles para Roles
+        $admin = new Role();
+        $admin->name = "admin";
+        $admin->description = "Control total sobre la plataforma";
+        $admin->save();
+        $developer = new Role();
+        $developer->name = "developer";
+        $developer->description = "Agregar y modificar juegos";
+        $developer->save();
+        $user = new Role();
+        $user->name = "user";
+        $user->description = "disfruta de la plataforma";
+        $user->save();
+
         Message::factory(10)->create();
         PaymentMethod::factory(5)->create();
         Follower::factory(10)->create();
@@ -48,7 +69,12 @@ class DatabaseSeeder extends Seeder
         Game::factory(40)->create();
         WishList::factory(10)->create();
         Voucher::factory(15)->create();
-        CountryGame::factory(10)->create();
+        #Generacion datos para CountryGame
+        foreach(Game::all() as $game){
+            foreach (Country::all() as $country) {
+                $newcountrygame($game->id, $country->id);
+            };
+        };
         Comment::factory(20)->create();
         ContentVoucher::factory(8)->create();
         Developer::factory(12)->create();

@@ -33,17 +33,6 @@
                         <label for="password" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="password" name="password"value="">
                     </div>
-                    <div class="mb-3">
-                        <label for="id_role" class="form-label">Tipo de rol</label>
-                        <select class="form-select" aria-label="Seleccione un tipo de Rol" name="id_role" id="id_role">
-                            <option selected>Elige tu Rol</option>
-                        <?php
-                        foreach ($roles as $role) {
-                            print "<option value='$role->id'>$role->name</option>";
-                        }
-                        ?>
-                        </select>
-                    </div>
                     <div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a class="ms-3 link-secondary" href="/forgottenpassword">Olvidaste tu contraseña?<a>

@@ -19,9 +19,9 @@ Route::get('/', function () {
 });
 */
 
-/* Route::get('/', function () {
-    return view('home');
-}); */
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::get('/forgottenpassword', function () {
     return view('forgottenpassword');
@@ -42,7 +42,6 @@ Route::post('/permissions/create','PermissionController@store');
 Route::put('/permissions/update/{id}','PermissionController@update');
 Route::delete('/permissions/delete/{id}','PermissionController@destroy');
 //Routes for Roles
-Route::get('/login','RoleController@showallroles');
 
 Route::get('/roles','RoleController@index');
 Route::get('/roles/{id}','RoleController@show');

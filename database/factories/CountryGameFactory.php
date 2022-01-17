@@ -23,9 +23,15 @@ class CountryGameFactory extends Factory
      */
     public function definition()
     {
+        $games = Game::all()->count();
+        $countries = Country::all()->count();
+        $gamecountries = CountryGame::all()->count();
+        $country = floor($gamecountries/$games)+1;
+        $game = $gamecountries % $countries + 1;
+
         return [
-            'id_countries' => Country::all()->random()->id,
-            'id_games' => Game::all()->random()->id,
+            'id_countries' => $country,
+            'id_games' => $game,
             'price' => $this->faker->randomNumber($nbDigits=4)
         ];
     }
