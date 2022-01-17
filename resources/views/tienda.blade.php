@@ -24,15 +24,15 @@
             <h4 class="position-relative top-50">Juegos</h4>
             <div class="row text-center mb-4">
                 <ol class="list-group list-group-numbered">
-                @foreach ($games as $game)
+                @for ($i = 0; $i < $games->count() ; $i++)
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                            <div class="fw-bold">{{$game->name}}</div>
+                            <div class="fw-bold"><a href='/games/{{$games[$i]->id}}'> {{$games[$i]->name}}</a></div>
                             Content for list item
                         </div>
-                        <span class="badge bg-primary rounded-pill">14</span>
+                        <span class="badge bg-primary rounded-pill">{{$precios_reverse[($games->count()-$i-1)]}}</span>
                     </li>
-                    @endforeach
+                    @endfor
                 </ol>
             </div>
         </div>

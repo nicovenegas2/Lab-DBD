@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Kind;
 use App\Models\GameKind;
+use App\Models\Country;
+use App\Models\CountryGame;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Library;
 
@@ -45,10 +47,25 @@ class GameController extends Controller
 
     public function showgames(){
         $games = Game::all();
-        
+        $username = $_COOKIE['usuario'];
 
-        return view('tienda',compact('games'));
+        foreach (User::all() as $user){
+            if($user->nickname == $username){
+                $usercountry = $user->id_country;
+                break;
+            }
+        }
 
+        $precios = collect([]);
+        foreach ($games as $game){
+            foreach (CountryGame::all() as $countrygame){
+                if($game->id == $countrygame->id_games && $countrygame->id_countries == $usercountry){
+                    $precios->prepend($countrygame->price);
+                }
+            }
+        }
+        $precios_reverse = $precios->reverse();
+        return view('tienda', compact('games'), compact('precios_reverse'));
     }
 
     public function showlibrary(){
