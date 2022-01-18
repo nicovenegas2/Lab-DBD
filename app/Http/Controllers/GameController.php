@@ -65,13 +65,24 @@ class GameController extends Controller
                 }
             }
         }
+
+        $categorias = collect([]);
+        foreach ($games as $game){
+            $categoriasgame = collect([]);
+            foreach (GameKind::all() as $gamekind){
+                if($game->id == $gamekind->id_game){
+                    $categoriasgame->prepend(Kind::all()->find($gamekind->id_kind));
+                }
+            }
+            $categorias->prepend($categoriasgame);
+        }
+        
         $precios_reverse = $precios->reverse();
-        return view('tienda', compact('games'), compact('precios_reverse'));
+        return view('tienda', compact('games'), compact('precios_reverse'))->with('categorias', $categorias);
     }
 
     public function showlibrary(){
         $username = $_COOKIE['usuario'];
-        $id = 0;
         foreach (User::all() as $user){
             if($user->nickname == $username){
                 $id = $user->id;

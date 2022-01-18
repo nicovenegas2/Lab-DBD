@@ -79,7 +79,14 @@ class DatabaseSeeder extends Seeder
         ContentVoucher::factory(8)->create();
         Developer::factory(12)->create();
         Kind::factory(6)->create();
-        GameKind::factory(15)->create();
+        foreach(Game::all() as $game){
+            for ($i = 0; $i < rand(1, Kind::all()->count()); $i++){
+                $newkindgame = new GameKind();
+                $newkindgame->id_game = $game->id;
+                $newkindgame->id_kind = rand(1, Kind::all()->count());
+                $newkindgame->save();
+            }
+        }
         Like::factory(5)->create();
         RolePermission::factory(5)->create();
         Library::factory(200)->create();

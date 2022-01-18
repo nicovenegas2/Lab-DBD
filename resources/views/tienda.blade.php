@@ -21,18 +21,29 @@
     @include('includes.navbar')
     <section class="mt-5">
         <div class="container ">
-            <h4 class="position-relative top-50">Juegos</h4>
+            <div class="d-flex justify-content-between">
+                <h4 class="col-1">Juegos</h4>
+                <h4 class="col-1">Precio</h4>
+            </div>
             <div class="row text-center mb-4">
                 <ol class="list-group list-group-numbered">
-                @for ($i = 0; $i < $games->count() ; $i++)
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
-                            <div class="fw-bold"><a href='/games/{{$games[$i]->id}}'> {{$games[$i]->name}}</a></div>
-                            Content for list item
-                        </div>
-                        <span class="badge bg-primary rounded-pill">{{$precios_reverse[($games->count()-$i-1)]}}</span>
-                    </li>
-                    @endfor
+                    @for ($i = 0; $i < $games->count() ; $i++)
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="d-flex justify-content-start"><a href='/games/{{$games[$i]->id}}'>
+                                        {{$games[$i]->name}}</a></div>
+                                <div class="row p-2">
+                                    @foreach ($categorias[$games->count()-$i-1] as $thecategory)
+                                    <a href="" class="col mx-0 px-0"><button type="button"
+                                            class="border border-1 btn btn-primary m-1 p-1 rounded-pill"
+                                            style="font-size:0.8rem;">{{$thecategory->kind}}</button></a>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <span class="badge rounded-pill m-4"
+                                style="background-color:#003153; font-size: 1rem;">{{$precios_reverse[($games->count()-$i-1)]}}</span>
+                        </li>
+                        @endfor
                 </ol>
             </div>
         </div>
