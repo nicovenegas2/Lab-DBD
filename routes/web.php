@@ -75,6 +75,7 @@ Route::get('/games/show/{id}','GameController@showonegame');
 Route::get('/','GameController@showtrends');
 Route::get('/library','GameController@showlibrary');
 Route::get('/games','GameController@index');
+Route::get('/modifygame/{id}', 'GameController@getgameinfo');
 //Route::get('/games/{id}','GameController@show');
 Route::post('/creategame', 'GameController@creategame');
 
