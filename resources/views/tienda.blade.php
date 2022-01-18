@@ -35,7 +35,7 @@
                                 <div class="row p-2">
                                     @foreach ($categorias[$games->count()-$i-1] as $thecategory)
                                     <a href="" class="col mx-0 px-0"><button type="button"
-                                            class="border border-1 btn btn-primary m-1 p-1 rounded-pill"
+                                            class="border border-1 btn btn-primary m-1 px-2 py-1 rounded-pill"
                                             style="font-size:0.8rem;">{{$thecategory->kind}}</button></a>
                                     @endforeach
                                 </div>
