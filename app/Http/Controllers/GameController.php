@@ -113,8 +113,9 @@ class GameController extends Controller
             $categorias->prepend($categoriasgame);
         }
         
+        $kinds = Kind::all();
         $precios_reverse = $precios->reverse();
-        return view('tienda', compact('games'), compact('precios_reverse'))->with('categorias', $categorias);
+        return view('tienda', compact('games'), compact('precios_reverse'))->with('categorias', $categorias)->with('kinds', $kinds);
     }
 
     public function showlibrary(){
