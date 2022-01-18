@@ -73,7 +73,7 @@ class CommentController extends Controller
         $comment->id_game = $id;
         $comment->comment = $request->comment;
         $comment->save();
-        return redirect('/games/'.$id);
+        return redirect('/games/show/'.$id);
     }
 
     /**
