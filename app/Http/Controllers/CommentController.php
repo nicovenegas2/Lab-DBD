@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -40,9 +41,9 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
+        /* $validator = Validator::make($request->all(), [
             'id_user' => 'required|integer',
             'id_game' => 'required|integer',
             'comment' => 'required|string|min:2|max:100',
@@ -60,13 +61,19 @@ class CommentController extends Controller
         if($validator->fails())
         {
             return response($validator->errors(),400);
+        } */
+        foreach (User::all() as $user) {
+            if($user->nickname == $_COOKIE['usuario']){
+                $theuser = $user;
+                break;
+            }
         }
         $comment = new Comment();
-        $comment->id_user = $request->id_user;
-        $comment->id_game = $request->id_game;
+        $comment->id_user = $theuser->id;
+        $comment->id_game = $id;
         $comment->comment = $request->comment;
         $comment->save();
-        return response()->json(['message'=>'Comment created successfully'],201);
+        return redirect('/games/'.$id);
     }
 
     /**

@@ -29,7 +29,7 @@
                          <a class="nav-link active" aria-current="page" href="/">Home</a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link {{$atribute}}" href="/games/showlibrary">Biblioteca</a>
+                         <a class="nav-link {{$atribute}}" href="/library">Biblioteca</a>
                      </li>
                      <li class="nav-item">
                          <a class="nav-link {{$atribute}}" href="/shop">Tienda</a>

@@ -18,6 +18,16 @@
 </head>
 
 <body>
+    <?php
+        if($choice == "t"){
+            $show = "";
+            $notshow = "d-none";
+        }
+        if($choice == ""){
+            $show = "d-none";
+            $notshow = "";
+        }
+    ?>
     @include('includes.navbar')
     <div class="container">
         <div class="col mx-2 bg-secondary rounded-3 px-3 pt-2 pb-1 mb-1">
@@ -62,15 +72,11 @@
                             style="font-size:1.4rem;">Download
                         </button>
                     </a>
-                    <a href="">
-                        <button type="button" class="border border-1 btn btn-primary m-1 px-2 py-1 rounded ">
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                        </button>
+                    <a href="/like/{{$thegame->id}}" class="{{$notshow}}">
+                        <i class="fa fa-heart-o fs-3 text-white mx-2" aria-hidden="true"></i>
                     </a>
-                    <a href="">
-                        <button type="button" class="border border-1 btn btn-primary m-1 px-2 py-1 rounded ">
-                            <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-                        </button>
+                    <a href="/like/{{$thegame->id}}" class="{{$show}}">
+                        <i class="fa fa-heart fs-3 text-danger mx-2" aria-hidden="true"></i>
                     </a>
                 </div>
                 <div class="col-3 pt-2 me-0 pe-0 ">
@@ -83,13 +89,12 @@
             <div class="col-9 p-2 me-1 ms-0 bg-secondary rounded">
                 <h4 class="text-light">Comentarios</h4>
                 <div class="row col gray-600">
-                    <form action="/comments/post" method='POST'>
+                    <form action="/comments/create/{{$thegame->id}}" method='POST'>
                         <input type="text" class="form-control" id="comment" name="comment"
                             placeholder="Agrega un comentario..." value="">
                         <div class="col">
-                            <a href=""><button type="button" class="border border-1 btn btn-primary m-1 p-1 rounded"
+                            <button type="submit" class="border border-1 btn btn-primary m-1 p-1 rounded"
                                     style="font-size:1rem;">Publicar</button>
-                            </a>
                         </div>
                     </form>
                 </div>
@@ -102,7 +107,7 @@
                         </p>
                     </div>
                 </div>
-               @endforeach
+                @endforeach
 
             </div>
 

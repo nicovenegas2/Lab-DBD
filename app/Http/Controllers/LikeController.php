@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Like;
+use App\Models\User;
 
 class LikeController extends Controller
 {
@@ -80,6 +81,33 @@ class LikeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function givelike($id){
+        /* try { */
+            foreach (User::all() as $user) {
+                if($user->nickname == $_COOKIE['usuario']){
+                    $theuser = $user;
+                    break;
+                }
+            }
+            foreach (Like::all() as $like) {
+                if($like->id_game == $id and $like->id_user == $theuser->id){
+                     if($like->choice){
+                         $like->choice = !$like->choice;
+                         $like->save();
+                         return redirect('/games/'.$id);
+                     }else{
+                        $like->choice = !$like->choice;
+                        $like->save();
+                        return redirect('/games/'.$id);
+                     }
+                }
+            }
+            return redirect('/games/'.$id)->with('newlike',"t");
+        /*     
+        } catch (\Throwable $th) {
+           return redirect('login');
+        } */
+    }
     public function show($id)
     {
         //

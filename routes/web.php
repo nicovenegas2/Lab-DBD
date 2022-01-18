@@ -73,7 +73,7 @@ Route::delete('/vouchers/delete/{id}','VoucherController@destroy');
 //Routes for Game
 Route::get('/games/{id}','GameController@showonegame');
 Route::get('/','GameController@showtrends');
-Route::get('/games/showlibrary','GameController@showlibrary');
+Route::get('/library','GameController@showlibrary');
 Route::get('/games','GameController@index');
 //Route::get('/games/{id}','GameController@show');
 Route::post('/games/create','GameController@store');
@@ -87,6 +87,7 @@ Route::post('/countrygames/create','CountryGameController@store');
 Route::put('/countrygames/update/{id}','CountryGameController@update');
 Route::delete('/countrygames/delete/{id}','CountryGameController@destroy');
 //Routes for Like
+Route::get('/like/{id}', 'LikeCOntroller@givelike');
 Route::get('/likes','LikeController@index');
 Route::get('/likes/{id}','LikeController@show');
 Route::post('/likes/create','LikeController@store');
@@ -131,7 +132,7 @@ Route::delete('/banks/delete/{id}','BankController@destroy');
 //Routes for Comment
 Route::get('/comments','CommentController@index');
 Route::get('/comments/{id}','CommentController@show');
-Route::post('/comments/create','CommentController@store');
+Route::post('/comments/create/{id}','CommentController@store');
 Route::put('/comments/update/{id}','CommentController@update');
 Route::delete('/comments/delete/{id}','CommentController@destroy');
 //Routes for Follower

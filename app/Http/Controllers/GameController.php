@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Like;
 use App\Models\Comment;
 use App\Models\Kind;
 use App\Models\GameKind;
@@ -78,20 +79,41 @@ class GameController extends Controller
             }
         }
         $games = collect([]);
-        foreach (Library::all() as $library){
-            if($library->id_users == $id){
+        foreach (Library::all() as $libraries){
+            if($libraries->id_users == $id){
                 foreach (Game::all() as $game){
-                    if($game->id == $library->id_games){
+                    if($game->id == $libraries->id_games){
                         $games->prepend($game);
                         break;
                     }
                 }
             }
         }
-        return view('library',compact('games'));
+
+        return view('library', compact('games'));
     }
 
-        public function showonegame($id){
+    public function showonegame($id){
+        /* try { */
+            foreach (User::all() as $user) {
+                if($user->nickname == $_COOKIE['usuario'])
+                $theuser = $user;
+            }
+            foreach (Like::all() as $like) {
+                if($like->id_user == $theuser->id and $like->id_game == $id){
+                    if($like->choice){
+                        $choice = "t";
+                        break;
+                    }else{
+                        $choice = "";
+                        break;
+                    }
+                }
+                $choice = "";
+            }
+        /* } catch (\Throwable $th) {
+            $choice = "";
+        } */
         $thegame = Game::all()->find($id);
         
         $comentarios = collect([]);
@@ -107,7 +129,7 @@ class GameController extends Controller
             }
         }
 
-        return view('showonegame', compact('thegame'),compact('comentarios'))->with('categorias', $categorias);
+        return view('showonegame', compact('thegame'),compact('comentarios'))->with('categorias', $categorias)->with('choice',$choice);
     }
 
     /*
