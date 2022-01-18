@@ -27,8 +27,8 @@ Route::get('/forgottenpassword', function () {
     return view('forgottenpassword');
 });
 
-Route::get('/try', function () {
-    return view('showonegame');
+Route::get('/creategame', function () {
+    return view('creategame');
 });
 
 //Routes for Country 
@@ -71,11 +71,13 @@ Route::post('/vouchers/create','VoucherController@store');
 Route::put('/vouchers/update/{id}','VoucherController@update');
 Route::delete('/vouchers/delete/{id}','VoucherController@destroy');
 //Routes for Game
-Route::get('/games/{id}','GameController@showonegame');
+Route::get('/games/show/{id}','GameController@showonegame');
 Route::get('/','GameController@showtrends');
 Route::get('/library','GameController@showlibrary');
 Route::get('/games','GameController@index');
 //Route::get('/games/{id}','GameController@show');
+Route::post('/creategame', 'GameController@creategame');
+
 Route::post('/games/create','GameController@store');
 Route::put('/games/update/{id}','GameController@update');
 Route::delete('/games/delete/{id}','GameController@destroy');

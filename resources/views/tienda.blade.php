@@ -30,7 +30,7 @@
                     @for ($i = 0; $i < $games->count() ; $i++)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="d-flex justify-content-start"><a href='/games/{{$games[$i]->id}}'>
+                                <div class="d-flex justify-content-start"><a href='/games/show/{{$games[$i]->id}}'>
                                         {{$games[$i]->name}}</a></div>
                                 <div class="row p-2">
                                     @foreach ($categorias[$games->count()-$i-1] as $thecategory)

@@ -46,6 +46,42 @@ class GameController extends Controller
         return view('home',compact('games'));
     }
 
+
+    public function creategame(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'age_restriction' => 'required',
+            'requirements' => 'required',
+            'description' => 'required',
+            'demo' => 'required',
+            'link' => 'required',
+        ],
+        [
+            'name.required' => 'Name is required',
+            'age_restriction.required' => 'Age Restriction is required',
+            'requirements.required' => 'Requirements is required',
+            'description.required' => 'Description is required',
+            'demo.required' => 'Demo is required',
+            'link.required' => 'Link is required',
+        ]);
+        if($validator->fails())
+        {
+            return redirect('/creategame');
+        }
+
+        $G = new Game;
+        $G->name = $request->name;
+        $G->age_restriction = $request->age_restriction;
+        $G->requirements = $request->requirements;
+        $G->description = $request->description;
+        $G->sold_units = 0;
+        $G->demo = $request->demo;
+        $G->link = $request->link;
+        $G->save();
+        return redirect('/');
+    }
+
+
     public function showgames(){
         $games = Game::all();
         $username = $_COOKIE['usuario'];
