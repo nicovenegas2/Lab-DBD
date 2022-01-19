@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Kind;
 use App\Http\Controllers\Role;
 
 /*
@@ -33,6 +34,10 @@ Route::get('/creategame', function () {
 
 Route::get('/money', function () {
     return view('money');
+});
+
+Route::get('/creategame', function () {
+    return view('creategame')->with("categorias",Kind::all());
 });
 //Routes for Country 
 Route::get('/countries','CountryController@index');

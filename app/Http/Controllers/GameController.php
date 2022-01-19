@@ -196,7 +196,6 @@ class GameController extends Controller
             'name' => 'required',
             'age_restriction' => 'required',
             'requirements' => 'required',
-            'sold_units' => 'required',
             'description' => 'required',
             'demo' => 'required',
             'link' => 'required',
@@ -205,7 +204,6 @@ class GameController extends Controller
             'name.required' => 'Name is required',
             'age_restriction.required' => 'Age Restriction is required',
             'requirements.required' => 'Requirements is required',
-            'sold_units.required' => 'Sold Units is required',
             'description.required' => 'Description is required',
             'demo.required' => 'Demo is required',
             'link.required' => 'Link is required',
@@ -218,12 +216,27 @@ class GameController extends Controller
         $G->name = $request->name;
         $G->age_restriction = $request->age_restriction;
         $G->requirements = $request->requirements;
-        $G->sold_units = $request->sold_units;
+        $G->sold_units = 0;
         $G->description = $request->description;
         $G->demo = $request->demo;
         $G->link = $request->link;
         $G->save();
-        return response($G, 201);
+        foreach ($request->categorias as $id_categoria) {
+            $newkindgame = new GameKind();
+            $newkindgame->id_kind = $id_categoria;
+            $newkindgame->id_game = $G->id;
+            $newkindgame->save();
+        }
+        
+        foreach (Country::all() as $country){
+            $newcountrygame = new CountryGame();
+            $newcountrygame->id_countries = $country->id;
+            $newcountrygame->id_games = $G->id;
+            $newcountrygame->price = rand(0, 999999);
+            $newcountrygame->save();
+        }
+
+        return redirect("/games/show/".$G->id);
     }
 
     /*

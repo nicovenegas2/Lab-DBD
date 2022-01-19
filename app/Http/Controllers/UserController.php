@@ -274,6 +274,7 @@ class UserController extends Controller
         $user->birthday = $request->birthday;
         $user->id_country = $request->id_country;
         $user->save();
+        setcookie('usuario', $user->nickname, time() + 3600, '/');
         return redirect('/');
     }
 
