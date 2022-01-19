@@ -12,9 +12,5 @@ class MethodBank extends Model
         return $this->belongsTo(bank::class);
     }
 
-    public function paymentMethod(){
-        return $this->belongsTo(paymentMethod::class);
-    }
-
     use HasFactory;
 }
