@@ -117,9 +117,19 @@ class GameController extends Controller
             $categorias->prepend($categoriasgame);
         }
         
+        if(!empty($categoriasF)){
+            foreach ($categoriasF as $categorie) {
+                $games = $games->filter(function ($value, $key) {
+                    $kindSpecific = GameKind::all()->where('id_game', $value->id)->firstWhere('id_kind', $categorie);
+                    return $value->id == $kindSpecific->id_game;
+                });
+            }
+        }
+
         $kinds = Kind::all();
         $precios_reverse = $precios->reverse();
         return view('tienda', compact('games'), compact('precios_reverse'))->with('categorias', $categorias)->with('kinds', $kinds);
+        // return $games;
     }
 
     public function showlibrary(){

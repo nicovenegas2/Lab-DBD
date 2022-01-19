@@ -18,6 +18,10 @@
 </head>
 
 <body>
+    <?php
+    $isChecked = "checked"; 
+    ?>
+
     @include('includes.navbar')
     <section class="mt-5">
         <div class="container ">
@@ -45,8 +49,8 @@
                                     <!-- inicio menu drop -->
                                     @foreach ($kinds as $k)
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">{{$k->kind}}</label>
+                                        <input class="form-check-input " {{$isChecked}} name="categoriasF[]" type="checkbox" id="{{$k->id}}" value="{{$k->id}}">
+                                        <label class="form-check-label" for="{{$k->id}}">{{$k->kind}}</label>
                                     </div>
                                     @endforeach
                                     <!--  -->
