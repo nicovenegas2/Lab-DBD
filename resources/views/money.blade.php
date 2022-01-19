@@ -46,8 +46,8 @@
                 <div class="col ms-4">
                     <p class="m-4 fs-5">1. Medio de pago:</p>
                     <p class="m-4 fs-6">Tus tarjetas:</p>
+                    @foreach ($cards as $c)
                     <div class="m-4 form-check">
-                        @foreach ($cards as $c)
                         <input class="form-check-input" type="radio" name="tarjeta" id="tarjeta">
                         <label class="form-check-label shadow p-3 ms-3 bg-body rounded border" for="flexRadioDefault1">
                             {{$c->cardnumber}}

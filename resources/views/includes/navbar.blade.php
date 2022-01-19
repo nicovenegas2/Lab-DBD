@@ -47,10 +47,10 @@
                      </li>
                  </ul>
                  <a href="/money">
-                     <button type="button" class="btn btn-success {{$show}}">{{$money}}</button>
+                     <button type="button" class="btn me-2 btn-success {{$show}}">{{$money}}</button>
                  </a>
                  <a href="/CRUD/migrationlist">
-                     <button type="button" class="btn btn-primary {{$showrole}}">CRUD</button>
+                     <button type="button" class="btn me-2 btn-primary {{$showrole}}">CRUD</button>
                  </a>
              </div>
 
