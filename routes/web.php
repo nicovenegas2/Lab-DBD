@@ -31,6 +31,9 @@ Route::get('/creategame', function () {
     return view('creategame');
 });
 
+Route::get('/money', function () {
+    return view('money');
+});
 //Routes for Country 
 Route::get('/countries','CountryController@index');
 Route::get('/countries/{id}','CountryController@show');
