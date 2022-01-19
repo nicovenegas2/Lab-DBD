@@ -37,10 +37,6 @@ Route::get('/money', function () {
     return view('money');
 });
 
-Route::get('/addpaymentmethod', function () {
-    return view('addpaymentmethod');
-});
-
 Route::get('/creategame', function () {
     return view('creategame')->with("categorias",Kind::all());
 });
@@ -147,6 +143,7 @@ Route::post('/libraries/create','LibraryController@store');
 Route::put('/libraries/update/{id}','LibraryController@update');
 Route::delete('/libraries/delete/{id}','LibraryController@destroy');
 //Routes for PaymentMethod
+Route::get('/addpaymentmethod', 'PaymentMethodController@showallpaymentmethods');
 Route::get('/paymentmethods','PaymentMethodController@index');
 Route::get('/paymentmethods/{id}','PaymentMethodController@show');
 Route::post('/paymentmethods/create','PaymentMethodController@store');

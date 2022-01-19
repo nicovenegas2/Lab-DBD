@@ -13,14 +13,12 @@ class PaymentMethodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $PM = new PaymentMethod();
-        $PM = $PM->all();
-        if($PM->isEmpty()){
+    public function index(){
+        $paymentmethods = PaymentMethod::all();
+        if($paymentmethods->isEmpty()){
             return respose()->json(['message'=>'No data found'],404);
         }
-        return response($PM,200);
+        return response($paymentmethods,2);
     }
 
     /**
@@ -31,6 +29,11 @@ class PaymentMethodController extends Controller
     public function create()
     {
         //
+    }
+
+    public function showallpaymentmethods(){
+        $paymentmethods = PaymentMethod::all()->sortByDesc('name')->reverse();
+        return view('addpaymentmethod', compact('paymentmethods'));
     }
 
     /**

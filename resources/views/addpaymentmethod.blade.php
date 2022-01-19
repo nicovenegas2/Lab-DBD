@@ -38,10 +38,13 @@
             <div class="row align-items-start">
                 <label for="paymentmethod" class="form-label">Metodo de pago</label>
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Seleccione su metodo de pago" name="paymentmethod"
-                        id="paymentmethod">
-                        print "<option value=''>Visa</option>"
-                        print "<option value=''>MasterCard</option>"
+                    <select class="form-select" aria-label="Seleccione su metodo de pago" name="id_paymentmethod"
+                        id="id_paymentmethod">
+                        <?php
+                        foreach ($paymentmethods as $paymentmethod) {
+                            print "<option value='$paymentmethod->id'>$paymentmethod->name</option>";
+                        }
+                        ?>
                         <!-- Metodos de pago por agregar -->
                     </select>
                 </div>
