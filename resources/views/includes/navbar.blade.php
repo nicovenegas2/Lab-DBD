@@ -7,7 +7,7 @@
         $notshow = "d-none";
         print  "";
         try {
-            $role = $_COOKIE["role"];
+            $role = $_COOKIE["rol"];
             if ($role == "admin") {
                 $showrole = "";
             } else {
@@ -49,7 +49,7 @@
                  <a href="/money">
                      <button type="button" class="btn btn-success {{$show}}">{{$money}}</button>
                  </a>
-                 <a href="#">
+                 <a href="/CRUD/migrationlist">
                      <button type="button" class="btn btn-primary {{$showrole}}">CRUD</button>
                  </a>
              </div>

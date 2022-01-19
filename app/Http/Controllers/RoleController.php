@@ -41,10 +41,20 @@ class RoleController extends Controller
 
     public function setroles($role){
         if ($role == 'admin') {
+            setcookie('rol', 'admin', time() + (86400 * 30), "/");
             return redirect('/');
         } 
-        if ($role == 'user') {
-            return redirect('/login');
+        if ($role == 'developer') {
+            setcookie('rol', 'developer', time() + (86400 * 30), "/");
+            return redirect('/');
+        }
+        try {
+            $_COOKIE['rol'] = $role;
+            unset($_COOKIE['rol']);
+            setcookie('rol', '', time() - 3600, '/');
+            return redirect('/');
+        } catch (\Throwable $th) {
+            return redirect('/');
         }
     }
 

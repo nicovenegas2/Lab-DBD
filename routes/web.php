@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Kind;
+use App\Models\Country;
 use App\Http\Controllers\Role;
 
 /*
@@ -44,6 +45,16 @@ Route::get('/creategame', function () {
     return view('creategame')->with("categorias",Kind::all());
 });
 
+Route::get('/try', function () {
+    return view('includes.footer');
+});
+
+
+//Routes for CRUD 
+Route::get('/CRUD/migrationlist', 'BankController@showallinformation');
+Route::get('/CRUD/showlist/Country', function () {
+    return view('CRUD.Listas.crudcountry')->with("paises",Country::all());
+});
 //Routes for Country 
 Route::get('/countries','CountryController@index');
 Route::get('/countries/{id}','CountryController@show');
@@ -58,8 +69,8 @@ Route::get('/permissions/{id}','PermissionController@show');
 Route::post('/permissions/create','PermissionController@store');
 Route::put('/permissions/update/{id}','PermissionController@update');
 Route::delete('/permissions/delete/{id}','PermissionController@destroy');
-//Routes for Roles
 
+//Routes for Roles
 Route::get('/roles','RoleController@index');
 Route::get('/roles/setroles/{role}','RoleController@setroles');
 Route::get('/roles/changeroles','RoleController@changeroles');

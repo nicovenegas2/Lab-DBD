@@ -5,8 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bank;
 use Illuminate\Support\Facades\Validator;
-
-
+use App\Models\User;
+use App\Models\UserMethod;
+use App\Models\Role;
+use App\Models\RoleUser;
+use App\Models\RolePermission;
+use App\Models\Kind;
+use App\Models\Country;
+use App\Models\Game;
+use App\Models\Library;
+use App\Models\GameKind;
+use App\Models\CountryGame;
+use App\Models\Comment;
+use App\Models\ContentVoucher;
+use App\Models\Voucher;
+use App\Models\Developer;
+use App\Models\Follower;
+use App\Models\Like;
+use App\Models\Message;
+use App\Models\PaymentMethod;
+use App\Models\Permission;
+use App\Models\WishList;
 
 /* 
 struct Bank {
@@ -142,5 +161,30 @@ class BankController extends Controller
         }
         $bank->delete();
         return response()->json(['message'=>'Bank deleted successfully'],200);
+    }
+
+    public function showallinformation(){
+        $listaModels = collect([
+            'User',
+            'Role',
+            'RoleUser',
+            'Country',
+            'Game',
+            'GameKind',
+            'Developer',
+            'Permission',
+        ]);
+        $listaCantidades = collect([
+            User::all()->count(),
+            Role::all()->count(),
+            RoleUser::all()->count(),
+            Country::all()->count(),
+            Game::all()->count(),
+            GameKind::all()->count(),
+            Developer::all()->count(),
+            Permission::all()->count(),
+        ]);
+        return view ('migrationlist', compact('listaModels', 'listaCantidades'));
+        
     }
 }
