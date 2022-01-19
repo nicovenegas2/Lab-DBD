@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentMethod extends Model
 {
     
-    public function user(){
-        return $this->belongsTo('app\Models\UserMethod');
+    public function usermethod(){
+        return $this->hasMany('app\Models\UserMethod');
     }
 
     use HasFactory;

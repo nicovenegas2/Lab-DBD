@@ -23,8 +23,8 @@ class User extends Model
         return $this->hasMany(RoleUser::class);
     }
 
-    public function paymentMethod(){
-        return $this->hasMany(PaymentMethod::class);
+    public function usermethod(){
+        return $this->hasMany(UserMethod::class);
     }
 
     public function user_sender(){
