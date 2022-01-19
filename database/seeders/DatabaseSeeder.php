@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         Permission::factory(10)->create();
         Country::factory(10)->create();
         User::factory(5)->create();
-        #Generacion roles para Roles
+        # Generacion roles para Roles
         $admin = new Role();
         $admin->name = "admin";
         $admin->description = "Control total sobre la plataforma";
@@ -62,7 +62,13 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         Message::factory(10)->create();
-        PaymentMethod::factory(5)->create();
+        # Generacion metodos de pagos para PaymentMethod
+        $visa = new PaymentMethod();
+        $visa->name = "Visa";
+        $visa->save();
+        $mastercard = new PaymentMethod();
+        $mastercard->name = "MasterCard";
+        $mastercard->save();
         Follower::factory(10)->create();
         RoleUser::factory(10)->create();
         Bank::factory(10)->create();

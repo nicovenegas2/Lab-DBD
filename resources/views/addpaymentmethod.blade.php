@@ -40,7 +40,8 @@
                 <div class="input-group mb-3">
                     <select class="form-select" aria-label="Seleccione su metodo de pago" name="paymentmethod"
                         id="paymentmethod">
-                        print "<option value=''>Metodo de pago</option>"
+                        print "<option value=''>Visa</option>"
+                        print "<option value=''>MasterCard</option>"
                         <!-- Metodos de pago por agregar -->
                     </select>
                 </div>
@@ -53,7 +54,7 @@
                 <div class="row input-group mb-3">
                     <div class="col-6 col-sm-4">
                         <input type="tel" class="form-control" id="cardnumber" name="cardnumber"
-                            placeholder="0000-0000-0000" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
+                            placeholder="0000-0000-0000-0000" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
                     </div>
 
                     <div class="col-6 col-sm-4">
