@@ -6,12 +6,23 @@
         $show = "";
         $notshow = "d-none";
         print  "";
+        try {
+            $role = $_COOKIE["role"];
+            if ($role == "admin") {
+                $showrole = "";
+            } else {
+                $showrole = "d-none";
+            } 
+        } catch (Exception $e) {
+            $showrole = "d-none";
+        }
     } catch (Exception $e){
         $money = "";
         $atribute ="disabled";
         $show = "d-none";
         $notshow = "";
         $nickname = "Lab-DBD";
+        $showrole = "d-none";
     }
     ?>
  <header class="mb-5">
@@ -34,33 +45,12 @@
                      <li class="nav-item">
                          <a class="nav-link {{$atribute}}" href="/shop">Tienda</a>
                      </li>
-                     <li class="nav-item dropdown ">
-                         <a class="nav-link dropdown-toggle {{$atribute}}" href="#" id="navbarDropdown" role="button"
-                             data-bs-toggle="dropdown" aria-expanded="false">
-                             Dropdown
-                         </a>
-                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <li><a class="dropdown-item" href="#">Action</a></li>
-                             <li><a class="dropdown-item" href="#">Another action</a></li>
-                             <li>
-                                 <hr class="dropdown-divider">
-                             </li>
-                             <li><a class="dropdown-item" href="#">Something else here</a></li>
-                         </ul>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link {{$atribute}}" href="#">Lista Deseados</a>
-                     </li>
                  </ul>
                  <a href="/money">
                      <button type="button" class="btn btn-success {{$show}}">{{$money}}</button>
                  </a>
-                 <a href="/#">
-                     <button class="btn btn-md btn-outline-primary mx-3" role="button">
-
-                         <i class="fa fa-comments fa-lg" aria-hidden="true"></i>
-
-                     </button>
+                 <a href="#">
+                     <button type="button" class="btn btn-primary {{$showrole}}">CRUD</button>
                  </a>
              </div>
 
@@ -72,7 +62,7 @@
                  </button>
                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                      <li><a class='dropdown-item' href='/changeaccountinfo'>Actualizar información</a></li>
-                     <li><a class="dropdown-item" href="#">Another action</a></li>
+                     <li><a class="dropdown-item" href="/roles/changeroles">Cambiar de Rol</a></li>
                      <li class="divider"></li>
                      <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
                  </ul>

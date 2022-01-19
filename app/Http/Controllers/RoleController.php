@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use App\Models\RoleUser;
 
 class RoleController extends Controller
 {
@@ -20,6 +22,30 @@ class RoleController extends Controller
         return response()->json(['response' => 'Roles not founded']);
 
         return response($roles, 200);
+    }
+
+    public function changeroles(){
+        $UserName = $_COOKIE['usuario'];
+        foreach (User::all() as $user) {
+            if($user->nickname == $UserName){
+                $id = $user->id;
+                break;
+            }
+        }
+        $roles = RoleUser::where('id_user',$id)->get();
+        $roles = $roles->map(function($role){
+            return Role::find($role->id_role);
+        });
+        return view('changeroles',compact('roles'));
+    }
+
+    public function setroles($role){
+        if ($role == 'admin') {
+            return redirect('/');
+        } 
+        if ($role == 'user') {
+            return redirect('/login');
+        }
     }
 
     public function showallroles(){

@@ -79,6 +79,7 @@ class DatabaseSeeder extends Seeder
         ContentVoucher::factory(8)->create();
         Developer::factory(12)->create();
         Kind::factory(6)->create();
+        #Generacion datos para GameKind
         foreach(Game::all() as $game){
             for ($i = 0; $i < rand(1, Kind::all()->count()); $i++){
                 $newkindgame = new GameKind();
@@ -90,5 +91,20 @@ class DatabaseSeeder extends Seeder
         Like::factory(5)->create();
         RolePermission::factory(5)->create();
         Library::factory(200)->create();
+        $UserAdmin = new User();
+        $UserAdmin->nickname = "admin";
+        $UserAdmin->name = "admin";
+        $UserAdmin->email = "admin@admin.com";
+        $UserAdmin->password = "admin";
+        $UserAdmin->wallet = 999999;
+        $UserAdmin->birthday = "2020-01-01";
+        $UserAdmin->id_country = 1;
+        $UserAdmin->save();
+        $roleUserAdmin = new RoleUser();
+        $roleUserAdmin->id_user = $UserAdmin->id;
+        $roleUserAdmin->id_role = 1;
+        $roleUserAdmin->save();
+
+
     }
 }

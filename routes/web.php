@@ -43,6 +43,7 @@ Route::get('/addpaymentmethod', function () {
 Route::get('/creategame', function () {
     return view('creategame')->with("categorias",Kind::all());
 });
+
 //Routes for Country 
 Route::get('/countries','CountryController@index');
 Route::get('/countries/{id}','CountryController@show');
@@ -60,6 +61,8 @@ Route::delete('/permissions/delete/{id}','PermissionController@destroy');
 //Routes for Roles
 
 Route::get('/roles','RoleController@index');
+Route::get('/roles/setroles/{role}','RoleController@setroles');
+Route::get('/roles/changeroles','RoleController@changeroles');
 Route::get('/roles/{id}','RoleController@show');
 Route::post('/roles/create','RoleController@store');
 Route::put('/roles/update/{id}','RoleController@update');
