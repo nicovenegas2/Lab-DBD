@@ -43,7 +43,6 @@
     <div class="container {{$show}}">
         <form action="/money" method=''>
             <div class="row align-items-start">
-                @method('PUT')
                 <div class="col ms-4">
                     <p class="m-4 fs-5">1. Medio de pago:</p>
                     <p class="m-4 fs-6">Tus tarjetas:</p>
@@ -54,15 +53,18 @@
                             <!-- tarjetas del usuario -->
                         </label>
                     </div>
-                    <button type="button" class="btn btn-secondary ms-4">Agregar Tarjeta
+                    <a href="/addpaymentmethod">
+                        <button type="button" class="btn btn-secondary ms-4">Agregar Tarjeta
                     </button>
+                    </a>
                 </div>
                 <div class="col ms-4">
                     <p class="m-4 fs-5">2. Monto a cargar:</p>
                     <p class="m-4 fs-6">Ingresar monto:</p>
                     <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
-                        <input type="number" id="monto" name="monto" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input type="number" id="monto" name="monto" class="form-control"
+                            aria-label="Amount (to the nearest dollar)">
                     </div>
                 </div>
                 <div class="col ms-4">

@@ -53,7 +53,7 @@
                      </li>
                  </ul>
                  <a href="/money">
-                     <button type="button" class="btn btn-success">{{$money}}</button>
+                     <button type="button" class="btn btn-success {{$show}}">{{$money}}</button>
                  </a>
                  <a href="/#">
                      <button class="btn btn-md btn-outline-primary mx-3" role="button">
