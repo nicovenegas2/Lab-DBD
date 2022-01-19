@@ -24,6 +24,7 @@ use App\Models\GameKind;
 use App\Models\Kind;
 use App\Models\Like;
 use App\Models\RolePermission;
+use App\Models\UserMethod;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -91,6 +92,7 @@ class DatabaseSeeder extends Seeder
         Like::factory(5)->create();
         RolePermission::factory(5)->create();
         Library::factory(200)->create();
+        UserMethod::factory(8)->create();
         $UserAdmin = new User();
         $UserAdmin->nickname = "admin";
         $UserAdmin->name = "admin";

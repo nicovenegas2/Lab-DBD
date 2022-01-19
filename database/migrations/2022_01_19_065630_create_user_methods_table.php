@@ -15,6 +15,16 @@ class CreateUserMethodsTable extends Migration
     {
         Schema::create('user_methods', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_paymentmethod')->nullable();
+            $table->foreign('id_paymentmethod')->references('id')->on('payment_methods');
+            $table->string('cardnumber');
+            $table->integer('csc');
+            $table->date('expiration');
+            $table->string('cardowner');
+            $table->string('email');
+
             $table->timestamps();
         });
     }
