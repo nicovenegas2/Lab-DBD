@@ -146,7 +146,7 @@ class GameController extends Controller
     }
 
     public function showonegame($id){
-        /* try { */
+        try {
             foreach (User::all() as $user) {
                 if($user->nickname == $_COOKIE['usuario'])
                 $theuser = $user;
@@ -163,9 +163,9 @@ class GameController extends Controller
                 }
                 $choice = "";
             }
-        /* } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             $choice = "";
-        } */
+        }
         $thegame = Game::all()->find($id);
         
         $comentarios = collect([]);

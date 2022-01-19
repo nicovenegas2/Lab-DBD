@@ -82,7 +82,7 @@ class LikeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function givelike($id){
-        /* try { */
+        try {
             foreach (User::all() as $user) {
                 if($user->nickname == $_COOKIE['usuario']){
                     $theuser = $user;
@@ -94,19 +94,24 @@ class LikeController extends Controller
                      if($like->choice){
                          $like->choice = !$like->choice;
                          $like->save();
-                         return redirect('/games/'.$id);
+                         return redirect('/games/show/'.$id);
                      }else{
                         $like->choice = !$like->choice;
                         $like->save();
-                        return redirect('/games/'.$id);
+                        return redirect('/games/show/'.$id);
                      }
                 }
             }
-            return redirect('/games/'.$id)->with('newlike',"t");
-        /*     
+            $like = new Like();
+            $like->choice = True;
+            $like->id_user = $theuser->id;
+            $like->id_game = $id;
+            $like->save();
+            return redirect('/games/show/'.$id);
+            
         } catch (\Throwable $th) {
            return redirect('login');
-        } */
+        }
     }
     public function show($id)
     {
