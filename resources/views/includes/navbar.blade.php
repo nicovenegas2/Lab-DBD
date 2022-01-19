@@ -52,9 +52,9 @@
                          <a class="nav-link {{$atribute}}" href="#">Lista Deseados</a>
                      </li>
                  </ul>
-                 <div class="position-relative me-4 {{$show}} ">
-                     <p class="position-absolute top-50 start-50 translate-middle">{{$money}}</p>
-                 </div>
+                 <a href="/money">
+                     <button type="button" class="btn btn-success">{{$money}}</button>
+                 </a>
                  <a href="/#">
                      <button class="btn btn-md btn-outline-primary mx-3" role="button">
 

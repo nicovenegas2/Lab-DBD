@@ -41,7 +41,7 @@
     </div>
 
     <div class="container {{$show}}">
-        <form action="/users/register" method='POST'>
+        <form action="/money" method=''>
             <div class="row align-items-start">
                 @method('PUT')
                 <div class="col ms-4">

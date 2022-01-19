@@ -36,6 +36,10 @@ Route::get('/money', function () {
     return view('money');
 });
 
+Route::get('/addpaymentmethod', function () {
+    return view('addpaymentmethod');
+});
+
 Route::get('/creategame', function () {
     return view('creategame')->with("categorias",Kind::all());
 });
