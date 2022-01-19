@@ -46,6 +46,7 @@
                                     Generos
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
                                     <!-- inicio menu drop -->
                                     @foreach ($kinds as $k)
                                     <div class="form-check form-switch">
@@ -61,7 +62,7 @@
                             </li>
                         </ul>
                         <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="inputSGame" onkeyup="filterText()">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
@@ -75,11 +76,11 @@
 
             </div>
             <div class="row text-center mb-4">
-                <ol class="list-group list-group-numbered">
+                <ol class="list-group list-group-numbered" id="listGames">
                     @for ($i = 0; $i < $games->count() ; $i++)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="d-flex justify-content-start"><a href='/games/show/{{$games[$i]->id}}'>
+                                <div class="d-flex justify-content-start"><a href='/games/show/{{$games[$i]->id}}' name="gameName">
                                         {{$games[$i]->name}}</a></div>
                                 <div class="row p-2">
                                     @foreach ($categorias[$games->count()-$i-1] as $thecategory)
@@ -98,6 +99,35 @@
         </div>
     </section>
     @include('includes.footer')
+
+    <script>
+        function filterText(){
+            var categorias = document.getElementsByName("categoriasF[]");
+            var input = document.getElementById("inputSGame");
+            var ol = document.getElementById("listGames");
+            var li = ol.getElementsByTagName("li");
+            var a, i, txtValue;
+            console.log(categorias);
+            console.log(input.value);
+            for (i=0; i<li.length; i++){
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(input.value.toUpperCase()) > -1){
+                    li[i].style.setProperty("display", "flex", "important");
+                }
+                else {
+                    li[i].style.setProperty("display", "none", "important");
+                }
+                console.log(li[i]);
+            }
+
+
+
+        }
+
+    </script>
+
+
 </body>
 
 </html>
