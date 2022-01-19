@@ -149,6 +149,8 @@ Route::get('/paymentmethods/{id}','PaymentMethodController@show');
 Route::post('/paymentmethods/create','PaymentMethodController@store');
 Route::put('/paymentmethods/update/{id}','PaymentMethodController@update');
 Route::delete('/paymentmethods/delete/{id}','PaymentMethodController@destroy');
+
+Route::get('/money', 'UserMethodController@getcards');
 //Routes for Bank
 Route::get('/banks','BankController@index');
 Route::get('/banks/{id}','BankController@show');

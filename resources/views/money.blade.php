@@ -37,9 +37,9 @@
         <p class="text-center fs-2">Recargar</p>
     </div>
     <div class="w-10 pe-0 m-4 bg-primary text-white {{$show}} rounded">
+        
         <p class="text-center fs-1">Saldo actual: {{$money}}</p>
     </div>
-
     <div class="container {{$show}}">
         <form action="/money" method=''>
             <div class="row align-items-start">
@@ -47,12 +47,14 @@
                     <p class="m-4 fs-5">1. Medio de pago:</p>
                     <p class="m-4 fs-6">Tus tarjetas:</p>
                     <div class="m-4 form-check">
+                        @foreach ($cards as $c)
                         <input class="form-check-input" type="radio" name="tarjeta" id="tarjeta">
                         <label class="form-check-label shadow p-3 ms-3 bg-body rounded border" for="flexRadioDefault1">
-                            Tarjeta 1 **1234 10/2030
+                            {{$c->cardnumber}}
                             <!-- tarjetas del usuario -->
                         </label>
                     </div>
+                    @endforeach
                     <a href="/addpaymentmethod">
                         <button type="button" class="btn btn-secondary ms-4">Agregar Tarjeta
                     </button>

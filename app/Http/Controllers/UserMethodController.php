@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UserMethod;
+use App\Models\User;
 
 class UserMethodController extends Controller
 {
@@ -80,5 +82,22 @@ class UserMethodController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getcards(){
+        $nickname = $_COOKIE['usuario'];
+        $cards = collect([]);
+        foreach (User::all() as $user){
+            if($nickname == $user->nickname){
+                $theuser = $user;
+            }
+        }
+        foreach (UserMethod::all() as $usermethods){
+            if($theuser->id == $usermethods->id_user){
+                $cards->prepend($usermethods);
+            }
+        }
+        return view('money')->with('cards', $cards);
     }
 }
