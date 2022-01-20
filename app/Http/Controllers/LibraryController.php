@@ -160,15 +160,14 @@ class LibraryController extends Controller
             }
         }
 
-        $L = new Library;
-        $L->id_users = $theuser->id;
-        $L->id_games = $idgame;
-        $L->save();
-
         if($theuser->wallet >= $preciodejuego){
             $theuser->wallet = $theuser->wallet - $preciodejuego;
             $theuser->save();
             setcookie('money', $theuser->wallet, time()+3600,"/");
+            $L = new Library;
+            $L->id_users = $theuser->id;
+            $L->id_games = $idgame;
+            $L->save();
             return redirect('/');
         }
         else{
