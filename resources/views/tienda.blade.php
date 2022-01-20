@@ -124,25 +124,32 @@
         function filterCheck(li, it){
             var categorias = document.getElementsByName("categoriasF[]");
             if (categorias.length == it){
+                for(var i = 0; i < li.length; i++){
+                    li[i].style.setProperty("display", "flex", "important");
+                }
                 return;
             }
             var listos = [];
+            console.log(categorias[it].value, categorias[it].checked);
             for (i=0; i<li.length; i++){
                 var a = li[i].getElementsByTagName("a")[0];
                 var txtValue = a.textContent || a.innerText;
                 var catGame = li[i].getElementsByTagName("a");
                 for(j=1; j<catGame.length; j++){
                     var cat = catGame[j].textContent || catGame[j].innerText;
+                    console.log(categorias[it].value);
+                    console.log(cat);
+                    console.log(categorias[it].value == cat);
                     if (categorias[it].value == cat){
-                        li[i].style.setProperty("display", "flex", "important");
+                        // li[i].style.setProperty("display", "flex", "important");
                         listos.push(li[i]);
+                        console.log("entra");
                     }
                     else {
                         li[i].style.setProperty("display", "none", "important");
                     }
                 }
             }
-            console.log(listos);
             if(categorias[it].checked){
                 filterCheck(listos, it+1);
             }
