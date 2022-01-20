@@ -66,6 +66,8 @@ class UserMethodController extends Controller
         $U->email = $request->email;
 
         $U->save();
+
+        return redirect('')
     }
 
     /**
