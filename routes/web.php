@@ -45,6 +45,10 @@ Route::get('/try', function () {
     return view('includes.footer');
 });
 
+Route::get('/inbox', function () {
+    return view('inbox');
+});
+
 
 //Routes for CRUD 
 Route::get('/CRUD/migrationlist', 'BankController@showallinformation');

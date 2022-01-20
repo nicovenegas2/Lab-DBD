@@ -50,7 +50,7 @@
                                     <!-- inicio menu drop -->
                                     @foreach ($kinds as $k)
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input " {{$isChecked}} name="categoriasF[]" type="checkbox" id="{{$k->id}}" value="{{$k->id}}">
+                                        <input class="form-check-input " name="categoriasF[]" type="checkbox" id="{{$k->id}}" value="{{$k->kind}}" onclick="filterText()">
                                         <label class="form-check-label" for="{{$k->id}}">{{$k->kind}}</label>
                                     </div>
                                     @endforeach
@@ -102,27 +102,55 @@
 
     <script>
         function filterText(){
-            var categorias = document.getElementsByName("categoriasF[]");
             var input = document.getElementById("inputSGame");
             var ol = document.getElementById("listGames");
             var li = ol.getElementsByTagName("li");
+            var listos = [];
             var a, i, txtValue;
-            console.log(categorias);
-            console.log(input.value);
             for (i=0; i<li.length; i++){
                 a = li[i].getElementsByTagName("a")[0];
                 txtValue = a.textContent || a.innerText;
                 if (txtValue.toUpperCase().indexOf(input.value.toUpperCase()) > -1){
                     li[i].style.setProperty("display", "flex", "important");
+                    listos.push(li[i]);
                 }
                 else {
                     li[i].style.setProperty("display", "none", "important");
                 }
-                console.log(li[i]);
             }
+            filterCheck(listos, 0);
+        }
 
-
-
+        function filterCheck(li, it){
+            var categorias = document.getElementsByName("categoriasF[]");
+            if (categorias.length == it){
+                return;
+            }
+            var listos = [];
+            for (i=0; i<li.length; i++){
+                var a = li[i].getElementsByTagName("a")[0];
+                var txtValue = a.textContent || a.innerText;
+                var catGame = li[i].getElementsByTagName("a");
+                for(j=1; j<catGame.length; j++){
+                    var cat = catGame[j].textContent || catGame[j].innerText;
+                    if (categorias[it].value == cat){
+                        li[i].style.setProperty("display", "flex", "important");
+                        listos.push(li[i]);
+                    }
+                    else {
+                        li[i].style.setProperty("display", "none", "important");
+                    }
+                }
+            }
+            console.log(listos);
+            if(categorias[it].checked){
+                filterCheck(listos, it+1);
+            }
+            else{
+                filterCheck(li, it+1);
+            }
+            
+            
         }
 
     </script>
