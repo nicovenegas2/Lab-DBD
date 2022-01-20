@@ -57,7 +57,7 @@
                         @foreach($categorias as $onecategory)
                         <input type="checkbox" class="btn-check" name="categorias[]" value="{{$onecategory->id}}"
                             id="{{$onecategory->id}}" autocomplete="off">
-                        <label class="col-1 btn btn-outline-secondary mx-2 mb-1"
+                        <label class="col-1 btn btn-outline-secondary mx-2 px-0 texte-center mb-1"
                             for="{{$onecategory->id}}">{{$onecategory->kind}}</label><br>
                         @endforeach
                     </div>

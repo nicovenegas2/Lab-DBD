@@ -27,11 +27,31 @@
             $show = "d-none";
             $notshow = "";
         }
+
+        try {
+            $role = $_COOKIE["rol"];
+            if($role == "developer"){
+                $showdeveloper = "";
+            }else{
+                $showdeveloper = "d-none";
+            }
+        } catch (\Throwable $th) {
+            $showdeveloper = "d-none";
+        }
     ?>
     @include('includes.navbar')
+
     <div class="container">
-        <div class="col mx-2 bg-secondary rounded-3 px-3 pt-2 pb-1 mb-1">
-            <h3 class="text-light">{{$thegame->name}}</h3>
+        <div class="row mx-2 bg-secondary rounded-3 px-3 pt-2 pb-1 mb-1 justify-content-between">
+            <div class="col-1 ms-0 ps-0">
+                <h3 class="text-light text-left">{{ucfirst($thegame->name)}}</h3>
+            </div>
+            <div class="col-1 me-3 {{$showdeveloper}}">
+                <a href="/modifygame/{{$thegame->id}}">
+                    <button type="button" style="width:6rem; height:4:rem;"
+                        class="btn btn-dark text-right ">Modificar</button>
+                </a>
+            </div>
         </div>
         <!--  <div class="text-light m-0 p-0" style="height:0.3rem;">.</div> -->
         <div class="row mx-2 mt-0 mb-1">
@@ -74,7 +94,7 @@
                             </button>
                         </a>
                         <span class="badge rounded-pill"
-                                style="background-color:#007235; font-size: 1rem;">{{$preciodejuego}}</span>
+                            style="background-color:#007235; font-size: 1rem;">{{$preciodejuego}}</span>
                         <a href="/like/{{$thegame->id}}" class="{{$notshow}}">
                             <i class="fa fa-heart-o fs-3 text-white mx-2" aria-hidden="true"></i>
                         </a>

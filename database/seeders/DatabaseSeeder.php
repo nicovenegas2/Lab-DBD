@@ -113,6 +113,20 @@ class DatabaseSeeder extends Seeder
         $roleUserAdmin->id_role = 1;
         $roleUserAdmin->save();
 
+        $developer = new User();
+        $developer->nickname = "developer";
+        $developer->name = "developer";
+        $developer->email = "developer@developer.com";
+        $developer->password = "developer";
+        $developer->wallet = 999999;
+        $developer->birthday = "2001-01-01";
+        $developer->id_country = 1;
+        $developer->save();
+        $roledeveloper = new RoleUser();
+        $roledeveloper->id_user = $developer->id;
+        $roledeveloper->id_role = 2;
+        $roledeveloper->save();
+
 
     }
 }

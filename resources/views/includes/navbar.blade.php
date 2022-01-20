@@ -10,11 +10,17 @@
             $role = $_COOKIE["rol"];
             if ($role == "admin") {
                 $showrole = "";
+                $showcreategame = "d-none";
+            }elseif ($role == "developer") {
+                $showrole = "d-none";
+                $showcreategame = "";
             } else {
                 $showrole = "d-none";
+                $showcreategame = "d-none";
             } 
         } catch (Exception $e) {
             $showrole = "d-none";
+            $showcreategame = "d-none";
         }
     } catch (Exception $e){
         $money = "";
@@ -23,6 +29,7 @@
         $notshow = "";
         $nickname = "Lab-DBD";
         $showrole = "d-none";
+        $showcreategame = "d-none";
     }
     ?>
  <header class="mb-5">
@@ -51,6 +58,9 @@
                  </a>
                  <a href="/CRUD/migrationlist">
                      <button type="button" class="btn me-2 btn-primary {{$showrole}}">CRUD</button>
+                 </a>
+                 <a href="/creategame">
+                     <button type="button" class="btn me-2 btn-primary {{$showcreategame}}">Crear Juego</button>
                  </a>
              </div>
 
