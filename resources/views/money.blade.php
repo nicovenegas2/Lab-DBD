@@ -49,7 +49,7 @@
                     <p class="m-4 fs-6">Tus tarjetas:</p>
                     @foreach ($cards as $c)
                     <div class="m-4 form-check">
-                        <input class="form-check-input" type="radio" name="tarjeta" id="tarjeta">
+                        <input class="form-check-input" type="radio" name="paymentmethod" id="paymentmethod">
                         <label class="form-check-label shadow p-3 ms-3 bg-body rounded border" for="flexRadioDefault1">
                             {{$c->cardnumber}}
                             <!-- tarjetas del usuario -->

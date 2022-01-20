@@ -80,6 +80,19 @@ class UserMethodController extends Controller
     }
 
     public function agregarmonto(Request $request, $id){
+        $validator = Validator::make($request->all(), [
+            'monto' => 'required',
+            'paymentmethod' => 'required',
+        ],
+        [
+            'monto.required' => 'Se requiere un monto a agregar',
+            'paymentmethod.required' => 'Se requiere de una tarjeta',
+        ]
+        );
+
+        if($validator->fails())
+            return redirect('/money');
+
         $nickname = $_COOKIE['usuario'];
 
         foreach (User::all() as $user){
