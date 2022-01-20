@@ -155,6 +155,16 @@ class GameController extends Controller
         return view('library', compact('games'));
     }
 
+    public function buygame(Request $request){
+        $username = $_COOKIE['usuario'];
+        foreach (User::all() as $user){
+            if($user->nickname == $username){
+                $theuser = $user;
+                break;
+            }
+    }
+}
+
     public function showonegame($id){
         try {
             foreach (User::all() as $user) {
@@ -177,6 +187,13 @@ class GameController extends Controller
             $choice = "";
         }
         $thegame = Game::all()->find($id);
+
+
+        foreach (CountryGame::all() as $countrygame){
+            if($id == $countrygame->id_games && $countrygame->id_countries == $theuser->id_country){
+                $preciodejuego = $countrygame->price;
+            }
+        }
         
         $comentarios = collect([]);
         $categorias = collect([]);
@@ -191,7 +208,7 @@ class GameController extends Controller
             }
         }
 
-        return view('showonegame', compact('thegame'),compact('comentarios'))->with('categorias', $categorias)->with('choice',$choice);
+        return view('showonegame', compact('thegame'),compact('comentarios'))->with('categorias', $categorias)->with('choice',$choice)->with('preciodejuego', $preciodejuego);
     }
 
     /*
