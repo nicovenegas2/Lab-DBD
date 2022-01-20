@@ -36,7 +36,36 @@ class UserMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'cardnumber' => 'required',
+            'age_restriction' => 'required',
+            'requirements' => 'required',
+            'description' => 'required',
+            'demo' => 'required',
+            'link' => 'required',
+        ],
+        [
+            'name.required' => 'Name is required',
+            'age_restriction.required' => 'Age Restriction is required',
+            'requirements.required' => 'Requirements is required',
+            'description.required' => 'Description is required',
+            'demo.required' => 'Demo is required',
+            'link.required' => 'Link is required',
+        ]);
+        if($validator->fails())
+        {
+            return response($validator->errors(), 400);
+        }
+        $U = new UserMethod;
+        $U->id_user = $request->id_user;
+        $U->id_paymentmethod = $request->id_paymentmethod;
+        $U->cardnumber = $request->cardnumber;
+        $U->csc = $request->csc;
+        $U->expiration = $request->expiration;
+        $U->cardowner = $request->cardowner;
+        $U->email = $request->email;
+
+        $U->save();
     }
 
     /**

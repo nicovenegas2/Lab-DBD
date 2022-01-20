@@ -18,7 +18,7 @@ class MessageFactory extends Factory
         return [
             'id_sender' => User::all()->random()->id,
             'id_receiver' => Role::all()->random()->id,
-            'content' => $this->faker->text($maxNbChars = 5000),
+            'content' => $this->faker->text($maxNbChars = 500),
             'date' => $this->faker->date
         ];
     }

@@ -71,8 +71,9 @@
 
             <!-- aqui empiezan los juegos  -->
             <div class="d-flex justify-content-between">
-                <h4 class="col-1">Juegos</h4>
-                <h4 class="col-1">Precio</h4>
+                <h4 class="col-1 flex-grow-1">Juegos</h4>
+                <h4 class="col-1 my-3">Precio</h4>
+                <h4 class="col-1">Restricción de edad</h4>
 
             </div>
             <div class="row text-center mb-4">
@@ -80,7 +81,7 @@
                     @for ($i = 0; $i < $games->count() ; $i++)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="d-flex justify-content-start"><a href='/games/show/{{$games[$i]->id}}' name="gameName">
+                                <div class="d-flex justify-content-start fs-3"><a href='/games/show/{{$games[$i]->id}}' name="gameName">
                                         {{$games[$i]->name}}</a></div>
                                 <div class="row p-2">
                                     @foreach ($categorias[$games->count()-$i-1] as $thecategory)
@@ -92,6 +93,8 @@
                             </div>
                             <span class="badge rounded-pill m-4"
                                 style="background-color:#003153; font-size: 1rem;">{{$precios_reverse[($games->count()-$i-1)]}}</span>
+                            <span class="badge rounded-pill m-4"
+                                style="background-color:#E51313; font-size: 1rem;">{{$games[$i]->age_restriction}}</span>
                         </li>
                         @endfor
                 </ol>

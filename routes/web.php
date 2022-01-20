@@ -45,7 +45,7 @@ Route::get('/try', function () {
     return view('includes.footer');
 });
 
-Route::get('/inbox', function () {
+Route::get('/inbox', function (){
     return view('inbox');
 });
 
