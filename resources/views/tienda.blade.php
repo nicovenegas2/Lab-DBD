@@ -17,7 +17,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body">
     <?php
     $isChecked = "checked"; 
     ?>
@@ -51,7 +51,7 @@
                                     @foreach ($kinds as $k)
                                     <div class="form-check form-switch">
                                         <input class="form-check-input " name="categoriasF[]" type="checkbox"
-                                            id="{{$k->id}}" value="{{$k->kind}}" onclick="filterText()">
+                                            id="{{$k->id}}" value="{{$k->kind}}" onclick="filter18()">
                                         <label class="form-check-label" for="{{$k->id}}">{{$k->kind}}</label>
                                     </div>
                                     @endforeach
@@ -59,12 +59,16 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                <div class="form-check form-switch align-bottom mt-2">
+                                    <input class="form-check-input" type="checkbox" id="check18" onclick="filter18()">
+                                    <label class="form-check-label text-light align-bottom"
+                                        for="check18">Habilitar contenido +18</label>
+                                </div>
                             </li>
                         </ul>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                                id="inputSGame" onkeyup="filterText()">
+                                id="inputSGame" onkeyup="filter18()">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
@@ -83,7 +87,8 @@
                     @for ($i = 0; $i < $games->count() ; $i++)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="d-flex justify-content-start fs-3"><a href='/games/show/{{$games[$i]->id}}' name="gameName">
+                                <div class="d-flex justify-content-start fs-3"><a class="text-decoration-none"
+                                        href='/games/show/{{$games[$i]->id}}' name="gameName">
                                         {{$games[$i]->name}}</a></div>
                                 <div class="row p-2">
                                     @foreach ($categorias[$games->count()-$i-1] as $thecategory)
@@ -106,10 +111,8 @@
     @include('includes.footer')
 
     <script>
-    function filterText() {
+    function filterText(li) {
         var input = document.getElementById("inputSGame");
-        var ol = document.getElementById("listGames");
-        var li = ol.getElementsByTagName("li");
         var listos = [];
         var a, i, txtValue;
         for (i = 0; i < li.length; i++) {
@@ -134,20 +137,15 @@
             return;
         }
         var listos = [];
-        console.log(categorias[it].value, categorias[it].checked);
         for (i = 0; i < li.length; i++) {
             var a = li[i].getElementsByTagName("a")[0];
             var txtValue = a.textContent || a.innerText;
             var catGame = li[i].getElementsByTagName("a");
             for (j = 1; j < catGame.length; j++) {
                 var cat = catGame[j].textContent || catGame[j].innerText;
-                console.log(categorias[it].value);
-                console.log(cat);
-                console.log(categorias[it].value == cat);
                 if (categorias[it].value == cat) {
                     // li[i].style.setProperty("display", "flex", "important");
                     listos.push(li[i]);
-                    console.log("entra");
                 } else {
                     li[i].style.setProperty("display", "none", "important");
                 }
@@ -168,12 +166,48 @@
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    function alertEdad(){
+
+    function alertEdad() {
         var edad = getCookie("edad");
         alert(edad);
     }
 
+    function filter18() {
+        var edad = getCookie("edad");
+        var ol = document.getElementById("listGames");
+        var li = ol.getElementsByTagName("li");
+        var checkEdad = document.getElementById("check18");
+        var listos = [];
+        var a, i, txtValue;
+        edad = parseInt(edad);
+        console.log(edad >= 18 && checkEdad.checked);
+        if (edad >= 18 && checkEdad.checked) {
+            return filterText(li);
+        }
+        else if (edad >= 18 && !checkEdad.checked) {
+            edad = 17;
+        }
 
+        if (edad < 18 && checkEdad.checked){
+            alert("No puedes ver contenido +18");
+            checkEdad.checked = false;
+        }
+        for (i=0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("span")[1];
+            a = parseInt(a.textContent);
+            if(a <= edad) {
+                li[i].style.setProperty("display", "flex", "important");
+                listos.push(li[i]);
+            }else{
+                li[i].style.setProperty("display", "none", "important");
+            }
+        }
+        return filterText(listos);
+
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        filter18();
+    });
     </script>
 
 
