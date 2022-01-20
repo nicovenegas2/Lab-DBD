@@ -50,7 +50,8 @@
                                     <!-- inicio menu drop -->
                                     @foreach ($kinds as $k)
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input " name="categoriasF[]" type="checkbox" id="{{$k->id}}" value="{{$k->kind}}" onclick="filterText()">
+                                        <input class="form-check-input " name="categoriasF[]" type="checkbox"
+                                            id="{{$k->id}}" value="{{$k->kind}}" onclick="filterText()">
                                         <label class="form-check-label" for="{{$k->id}}">{{$k->kind}}</label>
                                     </div>
                                     @endforeach
@@ -62,7 +63,8 @@
                             </li>
                         </ul>
                         <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="inputSGame" onkeyup="filterText()">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                                id="inputSGame" onkeyup="filterText()">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>
@@ -104,64 +106,73 @@
     @include('includes.footer')
 
     <script>
-        function filterText(){
-            var input = document.getElementById("inputSGame");
-            var ol = document.getElementById("listGames");
-            var li = ol.getElementsByTagName("li");
-            var listos = [];
-            var a, i, txtValue;
-            for (i=0; i<li.length; i++){
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(input.value.toUpperCase()) > -1){
-                    li[i].style.setProperty("display", "flex", "important");
+    function filterText() {
+        var input = document.getElementById("inputSGame");
+        var ol = document.getElementById("listGames");
+        var li = ol.getElementsByTagName("li");
+        var listos = [];
+        var a, i, txtValue;
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(input.value.toUpperCase()) > -1) {
+                li[i].style.setProperty("display", "flex", "important");
+                listos.push(li[i]);
+            } else {
+                li[i].style.setProperty("display", "none", "important");
+            }
+        }
+        filterCheck(listos, 0);
+    }
+
+    function filterCheck(li, it) {
+        var categorias = document.getElementsByName("categoriasF[]");
+        if (categorias.length == it) {
+            for (var i = 0; i < li.length; i++) {
+                li[i].style.setProperty("display", "flex", "important");
+            }
+            return;
+        }
+        var listos = [];
+        console.log(categorias[it].value, categorias[it].checked);
+        for (i = 0; i < li.length; i++) {
+            var a = li[i].getElementsByTagName("a")[0];
+            var txtValue = a.textContent || a.innerText;
+            var catGame = li[i].getElementsByTagName("a");
+            for (j = 1; j < catGame.length; j++) {
+                var cat = catGame[j].textContent || catGame[j].innerText;
+                console.log(categorias[it].value);
+                console.log(cat);
+                console.log(categorias[it].value == cat);
+                if (categorias[it].value == cat) {
+                    // li[i].style.setProperty("display", "flex", "important");
                     listos.push(li[i]);
-                }
-                else {
+                    console.log("entra");
+                } else {
                     li[i].style.setProperty("display", "none", "important");
                 }
             }
-            filterCheck(listos, 0);
+        }
+        if (categorias[it].checked) {
+            filterCheck(listos, it + 1);
+        } else {
+            filterCheck(li, it + 1);
         }
 
-        function filterCheck(li, it){
-            var categorias = document.getElementsByName("categoriasF[]");
-            if (categorias.length == it){
-                for(var i = 0; i < li.length; i++){
-                    li[i].style.setProperty("display", "flex", "important");
-                }
-                return;
-            }
-            var listos = [];
-            console.log(categorias[it].value, categorias[it].checked);
-            for (i=0; i<li.length; i++){
-                var a = li[i].getElementsByTagName("a")[0];
-                var txtValue = a.textContent || a.innerText;
-                var catGame = li[i].getElementsByTagName("a");
-                for(j=1; j<catGame.length; j++){
-                    var cat = catGame[j].textContent || catGame[j].innerText;
-                    console.log(categorias[it].value);
-                    console.log(cat);
-                    console.log(categorias[it].value == cat);
-                    if (categorias[it].value == cat){
-                        // li[i].style.setProperty("display", "flex", "important");
-                        listos.push(li[i]);
-                        console.log("entra");
-                    }
-                    else {
-                        li[i].style.setProperty("display", "none", "important");
-                    }
-                }
-            }
-            if(categorias[it].checked){
-                filterCheck(listos, it+1);
-            }
-            else{
-                filterCheck(li, it+1);
-            }
-            
-            
-        }
+
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function alertEdad(){
+        var edad = getCookie("edad");
+        alert(edad);
+    }
+
 
     </script>
 

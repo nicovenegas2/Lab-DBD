@@ -115,6 +115,14 @@ class UserController extends Controller
         foreach (User::all() as $user) {
             if($request->nickname == $user->nickname){
                 if($request->password == $user->password){
+                    $dateB = $user->birthday;
+                    $year = date("Y",strtotime($dateB));
+                    $date = date("Y",time());
+                    $age = $date - $year;
+                    
+                    
+                
+                    setcookie('edad', $age, time()+3600, "/");
                     setcookie("money",$user->wallet, time()+3600,"/");
                     setcookie("usuario", $request->nickname, time()+3600,"/");
                     return redirect('/');
@@ -123,7 +131,7 @@ class UserController extends Controller
                 return redirect('/login');
             }
         }
-        return redirect('/login');
+        // return redirect('/login');
     }
     public function logout(){
         unset($_COOKIE['usuario']);
