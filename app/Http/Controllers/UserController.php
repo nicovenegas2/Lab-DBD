@@ -135,7 +135,9 @@ class UserController extends Controller
     }
     public function logout(){
         unset($_COOKIE['usuario']);
+        unset($_COOKIE['rol']);
         setcookie('usuario', '', time() - 3600, '/');
+        setcookie('rol', '', time() - 3600, '/');
         return redirect('/');
     }
 

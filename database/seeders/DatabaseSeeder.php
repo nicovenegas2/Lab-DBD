@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         $mastercard->name = "MasterCard";
         $mastercard->save();
         Follower::factory(10)->create();
-        RoleUser::factory(10)->create();
+        RoleUser::factory(5)->create();
         Bank::factory(10)->create();
         MethodBank::factory(10)->create();
         Game::factory(40)->create();
