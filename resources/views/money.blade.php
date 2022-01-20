@@ -41,7 +41,8 @@
         <p class="text-center fs-1">Saldo actual: {{$money}}</p>
     </div>
     <div class="container {{$show}}">
-        <form action="/money" method=''>
+        <form action="/usermethod/agregarmonto/{id}" method='POST'>
+        @method('PUT')
             <div class="row align-items-start">
                 <div class="col ms-4">
                     <p class="m-4 fs-5">1. Medio de pago:</p>

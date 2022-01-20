@@ -34,7 +34,7 @@
 <body>
     @include("includes.navbar")
     <div class="container {{$show}}">
-        <form action="/money" method=''>
+        <form action="/usermethod/create" method='POST'>
             <div class="row align-items-start">
                 <label for="paymentmethod" class="form-label">Metodo de pago</label>
                 <div class="input-group mb-3">
@@ -56,27 +56,26 @@
                 </div>
                 <div class="row input-group mb-3">
                     <div class="col-6 col-sm-4">
-                        <input type="tel" class="form-control" id="cardnumber" name="cardnumber"
-                            placeholder="0000-0000-0000-0000" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}">
+                        <input type="text" class="form-control" id="cardnumber" name="cardnumber">
                     </div>
 
                     <div class="col-6 col-sm-4">
-                        <input type="tel" class="form-control" id="csc" name="csc" placeholder="123" pattern="[0-9]{3}">
+                        <input type="number" class="form-control" id="csc" name="csc" placeholder="123" pattern="[0-9]{3}">
                     </div>
 
                     <div class="col-6 col-sm-4">
-                        <input type="month" class="form-control" id="expire" name="expire">
+                        <input type="date" class="form-control" id="expiration" name="expiration">
                     </div>
                 </div>
 
-                <label for="name" class="form-label">Nombre del titular de la tarjeta</label>
+                <label for="cardowner" class="form-label">Nombre del titular de la tarjeta</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="cardowner" name="cardowner">
                 </div>
 
-                <label for="mail" class="form-label">Mail personal</label>
+                <label for="email" class="form-label">Email</label>
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" id="mail" name="mail" placeholder=123@ejemplo.com>
+                    <input type="email" class="form-control" id="email" name="email" placeholder=123@ejemplo.com>
                 </div>
                 <div class="row input-group mb-3">
                     <div class="col-6 col-sm-4">
