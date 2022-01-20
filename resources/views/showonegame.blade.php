@@ -69,7 +69,7 @@
                 <div class="col">
                     <a href="">
                         <button type="button" class="border border-1 btn btn-primary m-1 p-1 rounded"
-                            style="font-size:1.4rem;">Download
+                            style="font-size:1.4rem;">Comprar
                         </button>
                     </a>
                     <a href="/like/{{$thegame->id}}" class="{{$notshow}}">
@@ -80,7 +80,7 @@
                     </a>
                 </div>
                 <div class="col-3 pt-2 me-0 pe-0 ">
-                    <p class="me-0 pe-0 text-light" style="font-size:1.2em;">Descargas: {{$thegame->sold_units}}</p>
+                    <p class="me-0 pe-0 text-light" style="font-size:1.2em;">Compras: {{$thegame->sold_units}}</p>
                 </div>
 
             </div>

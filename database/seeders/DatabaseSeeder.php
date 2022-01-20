@@ -105,7 +105,7 @@ class DatabaseSeeder extends Seeder
         $UserAdmin->email = "admin@admin.com";
         $UserAdmin->password = "admin";
         $UserAdmin->wallet = 999999;
-        $UserAdmin->birthday = "2020-01-01";
+        $UserAdmin->birthday = "2001-01-01";
         $UserAdmin->id_country = 1;
         $UserAdmin->save();
         $roleUserAdmin = new RoleUser();
