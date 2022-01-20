@@ -74,7 +74,7 @@
             <!-- aqui empiezan los juegos  -->
             <div class="d-flex justify-content-between">
                 <h4 class="col-1 flex-grow-1">Juegos</h4>
-                <h4 class="col-1 my-3">Precio</h4>
+                <h4 class="col-1 my-3" onclick="alertEdad()">Precio</h4>
                 <h4 class="col-1">Restricción de edad</h4>
 
             </div>

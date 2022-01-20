@@ -131,7 +131,7 @@ class UserController extends Controller
                 return redirect('/login');
             }
         }
-        // return redirect('/login');
+        return redirect('/login');
     }
     public function logout(){
         unset($_COOKIE['usuario']);
