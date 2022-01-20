@@ -55,6 +55,8 @@ Route::get('/CRUD/migrationlist', 'BankController@showallinformation');
 Route::get('/CRUD/showlist/Country', function () {
     return view('CRUD.Listas.crudcountry')->with("paises",Country::all());
 });
+
+Route::put('/CRUD/countries/update', 'CountryController@crudupdate');
 //Routes for Country 
 Route::get('/countries','CountryController@index');
 Route::get('/countries/{id}','CountryController@show');

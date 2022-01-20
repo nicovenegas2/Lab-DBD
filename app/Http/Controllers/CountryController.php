@@ -100,6 +100,40 @@ class CountryController extends Controller
         //
     }
 
+    public function crudupdate(Request $request){
+        $collect = collect([]);
+        for($i = 0; $i < count($request->modificados); $i++){
+            if(!($request->modificados[$i] === null)){
+                $thecountry = Country::find($request->modificados[$i]);
+                
+                if(!empty($thecountry)){
+                    $thecountry->name = $request->name[$i];
+                    $thecountry->coin = $request->coin[$i];
+                    $thecountry->save();
+                    $collect->push($thecountry);
+                }
+            }
+        }
+        
+        try {
+            for($i = 0; $i < count($request->newcoin); $i++){
+            $thecountry = new Country();
+            $thecountry->name = $request->newname[$i];
+            $thecountry->coin = $request->newcoin[$i];
+            $thecountry->save();
+            }
+        }catch(\Throwable $th){;};
+        try {
+            foreach($request->toerase as $porborrar){
+                try {
+                Country::find($porborrar)->delete();
+                } catch (\Throwable $th) {
+                }
+            }
+        }catch(\Throwable $th){;};
+        return redirect('/CRUD/migrationlist');
+    }
+
     /**
      * Update the specified resource in storage.
      *
