@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserMethod;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class UserMethodController extends Controller
 {
@@ -38,26 +39,34 @@ class UserMethodController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'cardnumber' => 'required',
-            'age_restriction' => 'required',
-            'requirements' => 'required',
-            'description' => 'required',
-            'demo' => 'required',
-            'link' => 'required',
+            'csc' => 'required',
+            'expiration' => 'required',
+            'cardowner' => 'required',
+            'email' => 'required',
+            'id_paymentmethod' => 'required',
         ],
         [
-            'name.required' => 'Name is required',
-            'age_restriction.required' => 'Age Restriction is required',
-            'requirements.required' => 'Requirements is required',
-            'description.required' => 'Description is required',
-            'demo.required' => 'Demo is required',
-            'link.required' => 'Link is required',
+            'cardnumber.required' => 'Card number is required',
+            'csc' => 'CSC is required',
+            'expiration.required' => 'Expiration date is required',
+            'cardowner.required' => 'Card owner is required',
+            'email.required' => 'Email is required',
         ]);
         if($validator->fails())
         {
             return response($validator->errors(), 400);
         }
+
+        $nickname = $_COOKIE['usuario'];
+
+        foreach (User::all() as $user){
+            if($nickname == $user->nickname){
+                $id_user_temp = $user->id;
+            }
+        }
+
         $U = new UserMethod;
-        $U->id_user = $request->id_user;
+        $U->id_user = $id_user_temp;
         $U->id_paymentmethod = $request->id_paymentmethod;
         $U->cardnumber = $request->cardnumber;
         $U->csc = $request->csc;
@@ -67,7 +76,26 @@ class UserMethodController extends Controller
 
         $U->save();
 
-        return redirect('')
+        return redirect('/money');
+    }
+
+    public function agregarmonto(Request $request, $id){
+        $nickname = $_COOKIE['usuario'];
+
+        foreach (User::all() as $user){
+            if($nickname == $user->nickname){
+                $iduser = $user->id;
+                break;
+            }
+        }
+        
+        $theuser = User::find($iduser);
+
+        $theuser->wallet = $request->monto + $theuser->wallet;
+        $theuser->save();
+        setcookie('money', $theuser->wallet, time()+3600,"/");
+
+        return redirect('/');
     }
 
     /**

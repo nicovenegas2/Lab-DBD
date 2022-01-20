@@ -18,9 +18,6 @@
 </head>
 
 <body>
-    <?php
-    setcookie("session","Zapatillas a luca hrmn");
-    ?>
     @include('includes.navbar')
     <div class="container">
         <div class="row">

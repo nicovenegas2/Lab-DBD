@@ -210,7 +210,9 @@ Route::post('/roleusers/create','RoleUserController@store');
 Route::put('/roleusers/update/{id}','RoleUserController@update');
 Route::delete('/roleusers/delete/{id}','RoleUserController@destroy');
 
-
+//Routes for UserMethod
+Route::post('/usermethod/create', 'UserMethodController@store');
+Route::put('/usermethod/agregarmonto/{id}', 'UserMethodController@agregarmonto');
 
 
 

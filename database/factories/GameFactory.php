@@ -12,7 +12,7 @@ class GameFactory extends Factory
     {
         return [
             'name'=> $this->faker->word,
-            'age_restriction'=> $this->faker->numberBetween($min = 3, $max = 18),
+            'age_restriction'=> $this->faker->numberBetween($min = 3, $max = 30),
             'requirements'=> $this->faker->text($maxNbChars = 500),
             'sold_units'=> $this->faker->randomNumber($nbDigits = NULL, $strict = false),
             'description'=> $this->faker->text($maxNbChars = 1999),
