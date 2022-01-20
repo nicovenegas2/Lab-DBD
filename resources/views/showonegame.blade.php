@@ -64,29 +64,30 @@
             </div>
         </div>
         <!-- <div class="text-light m-0 p-0" style="height:0.3rem;">.</div> -->
-        <div class="row mx-2 mt-0 mb-1">
-            <div class="row col-9 me-1 ms-0 bg-secondary rounded py-2 ps-2 pe-0 justify-content-between">
-                <div class="col">
-                    <form action="/buygame" method='POST'>
+        <form action="/buygame" method='POST'>
+            <div class="row mx-2 mt-0 mb-1">
+                <div class="row col-9 me-1 ms-0 bg-secondary rounded py-2 ps-2 pe-0 justify-content-between">
+                    <div class="col">
                         <a href="/buygame">
                             <button type="submit" class="border border-1 btn btn-primary m-1 p-1 rounded"
                                 style="font-size:1.4rem;">Comprar
                             </button>
                         </a>
-                    </form>
-                    <a href="/like/{{$thegame->id}}" class="{{$notshow}}">
-                        <i class="fa fa-heart-o fs-3 text-white mx-2" aria-hidden="true"></i>
-                    </a>
-                    <a href="/like/{{$thegame->id}}" class="{{$show}}">
-                        <i class="fa fa-heart fs-3 text-danger mx-2" aria-hidden="true"></i>
-                    </a>
+                        <span class="badge rounded-pill"
+                                style="background-color:#007235; font-size: 1rem;">{{$preciodejuego}}</span>
+                        <a href="/like/{{$thegame->id}}" class="{{$notshow}}">
+                            <i class="fa fa-heart-o fs-3 text-white mx-2" aria-hidden="true"></i>
+                        </a>
+                        <a href="/like/{{$thegame->id}}" class="{{$show}}">
+                            <i class="fa fa-heart fs-3 text-danger mx-2" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col-3 pt-2 me-0 pe-0 ">
+                        <p class="me-0 pe-0 text-light" style="font-size:1.2em;">Compras: {{$thegame->sold_units}}</p>
+                    </div>
                 </div>
-                <div class="col-3 pt-2 me-0 pe-0 ">
-                    <p class="me-0 pe-0 text-light" style="font-size:1.2em;">Compras: {{$thegame->sold_units}}</p>
-                </div>
-
             </div>
-        </div>
+        </form>
         <div class="row mx-2 mt-0 mb-1">
             <div class="col-9 p-2 me-1 ms-0 bg-secondary rounded">
                 <h4 class="text-light">Comentarios</h4>
