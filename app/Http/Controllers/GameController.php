@@ -155,15 +155,6 @@ class GameController extends Controller
         return view('library', compact('games'));
     }
 
-    public function buygame(Request $request){
-        $username = $_COOKIE['usuario'];
-        foreach (User::all() as $user){
-            if($user->nickname == $username){
-                $theuser = $user;
-                break;
-            }
-    }
-}
 
     public function showonegame($id){
         try {
@@ -207,6 +198,8 @@ class GameController extends Controller
                 $categorias->prepend(Kind::all()->find($gamekind->id_kind)->kind);
             }
         }
+
+        setcookie('id_juego', $id, time()+3600, "/");
 
         return view('showonegame', compact('thegame'),compact('comentarios'))->with('categorias', $categorias)->with('choice',$choice)->with('preciodejuego', $preciodejuego);
     }

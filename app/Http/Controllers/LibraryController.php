@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Library;
+use App\Models\User;
+use App\Models\CountryGame;
 use Illuminate\Support\Facades\Validator;
 
 class LibraryController extends Controller
@@ -140,5 +142,37 @@ class LibraryController extends Controller
         $library = Library::find($id);
         $library->delete();
         return response()->json(['message'=>'Library deleted successfully'],201);
+    }
+
+    public function buygame(Request $request){
+        $username = $_COOKIE['usuario'];
+        $idgame = $_COOKIE['id_juego'];
+
+        foreach (User::all() as $user){
+            if($user->nickname = $username){
+                $theuser = $user;
+            }
+        }
+
+        foreach (CountryGame::all() as $countrygame){
+            if($idgame == $countrygame->id_games && $countrygame->id_countries == $theuser->id_country){
+                $preciodejuego = $countrygame->price;
+            }
+        }
+
+        $L = new Library;
+        $L->id_users = $theuser->id;
+        $L->id_games = $idgame;
+        $L->save();
+
+        if($theuser->wallet >= $preciodejuego){
+            $theuser->wallet = $theuser->wallet - $preciodejuego;
+            $theuser->save();
+            setcookie('money', $theuser->wallet, time()+3600,"/");
+            return redirect('/');
+        }
+        else{
+            return redirect('/money');
+        }
     }
 }

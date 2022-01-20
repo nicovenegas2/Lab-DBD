@@ -67,11 +67,13 @@
         <div class="row mx-2 mt-0 mb-1">
             <div class="row col-9 me-1 ms-0 bg-secondary rounded py-2 ps-2 pe-0 justify-content-between">
                 <div class="col">
-                    <a href="">
-                        <button type="button" class="border border-1 btn btn-primary m-1 p-1 rounded"
-                            style="font-size:1.4rem;">Comprar
-                        </button>
-                    </a>
+                    <form action="/buygame" method='POST'>
+                        <a href="/buygame">
+                            <button type="submit" class="border border-1 btn btn-primary m-1 p-1 rounded"
+                                style="font-size:1.4rem;">Comprar
+                            </button>
+                        </a>
+                    </form>
                     <a href="/like/{{$thegame->id}}" class="{{$notshow}}">
                         <i class="fa fa-heart-o fs-3 text-white mx-2" aria-hidden="true"></i>
                     </a>
@@ -94,7 +96,7 @@
                             placeholder="Agrega un comentario..." value="">
                         <div class="col">
                             <button type="submit" class="border border-1 btn btn-primary m-1 p-1 rounded"
-                                    style="font-size:1rem;">Publicar</button>
+                                style="font-size:1rem;">Publicar</button>
                         </div>
                     </form>
                 </div>

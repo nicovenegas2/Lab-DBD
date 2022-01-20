@@ -49,7 +49,6 @@ Route::get('/inbox', function (){
     return view('inbox');
 });
 
-
 //Routes for CRUD 
 Route::get('/CRUD/migrationlist', 'BankController@showallinformation');
 Route::get('/CRUD/showlist/Country', function () {
@@ -148,6 +147,7 @@ Route::get('/libraries/{id}','LibraryController@show');
 Route::post('/libraries/create','LibraryController@store');
 Route::put('/libraries/update/{id}','LibraryController@update');
 Route::delete('/libraries/delete/{id}','LibraryController@destroy');
+Route::post('/buygame', 'LibraryController@buygame');
 //Routes for PaymentMethod
 Route::get('/addpaymentmethod', 'PaymentMethodController@showallpaymentmethods');
 Route::get('/paymentmethods','PaymentMethodController@index');
