@@ -328,7 +328,7 @@ class GameController extends Controller
         $G->demo = $request->demo;
         $G->link = $request->link;
         $G->save();
-        return response()->json(['message'=>'Game updated successfully'],200);
+        return redirect("/games/show/".$G->id);
     }
 
     /*
